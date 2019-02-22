@@ -7,13 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceDependencyMock", "Se
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestClient", "TestClient\TestClient.csproj", "{D2373A74-2213-48F7-8EE1-7A4610999909}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business", "Business\Business.csproj", "{8F544D8F-442B-4D1F-AC9D-9136F8E85F5B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business", "Business\Business.csproj", "{8F544D8F-442B-4D1F-AC9D-9136F8E85F5B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business.Mock", "Business.Mock\Business.Mock.csproj", "{8F738299-07BE-48CC-B6FE-BCE5AA923D82}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business.Mock", "Business.Mock\Business.Mock.csproj", "{8F738299-07BE-48CC-B6FE-BCE5AA923D82}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3E7FF1A8-32A9-4F16-A4A3-1088CE1B1052}"
 	ProjectSection(SolutionItems) = preProject
-		ReaderMe.txt = ReaderMe.txt
+		README.md = README.md
 	EndProjectSection
 EndProject
 Global
