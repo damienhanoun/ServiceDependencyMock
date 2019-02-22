@@ -6,7 +6,7 @@ namespace Business.Mock.ServiceSide
 {
     public class ServiceSideQueryImpl : ServiceSideQuery
     {
-        public Option<MockStrategyContainer> GetNextMock(string methodIdentifier)
+        public Option<MockStrategyContainer> GetCurrentMock(string methodIdentifier)
         {
             var mockOption = FakeDatabase.MockTypes
                         .Where(m => m.MethodIdentifier == methodIdentifier)
@@ -20,7 +20,7 @@ namespace Business.Mock.ServiceSide
             return mockOption;
         }
 
-        public T GetNextContext<T>(string methodIdentifier)
+        public T GetCurrentContext<T>(string methodIdentifier)
         {
             return (T)FakeDatabase.MockTypes
                         .Where(m => m.MethodIdentifier == methodIdentifier)

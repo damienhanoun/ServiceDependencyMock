@@ -13,7 +13,7 @@
 
         public override int Get()
         {
-            var context = this.serviceSideQuery.GetNextContext<MockContext>(ServiceMethodsIdentifiers.GetId);
+            var context = this.serviceSideQuery.GetCurrentContext<MockContext>(ServiceMethodsIdentifiers.GetId);
             if (context.SessionId == ApplicationDatabase.SessionId)
                 return context.MockedObject;
 

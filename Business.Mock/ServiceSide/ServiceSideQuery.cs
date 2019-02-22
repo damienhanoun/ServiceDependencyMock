@@ -5,7 +5,7 @@ namespace Business.Mock.ServiceSide
 {
     public interface ServiceSideQuery
     {
-        Option<MockStrategyContainer> GetNextMock(string methodIdentifier);
-        T GetNextContext<T>(string methodIdentifier);
+        Option<MockStrategyContainer> GetCurrentMock(string methodIdentifier);
+        T GetCurrentContext<T>(string methodIdentifier);
     }
 }

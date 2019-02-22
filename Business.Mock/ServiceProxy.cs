@@ -22,7 +22,7 @@ namespace Business.Mock
         {
             int? returnedValue = null;
 
-            var mockTypeOption = this.serviceSideQuery.GetNextMock(ServiceMethodsIdentifiers.GetId);
+            var mockTypeOption = this.serviceSideQuery.GetCurrentMock(ServiceMethodsIdentifiers.GetId);
 
             mockTypeOption.MatchSome(mockType =>
             {
