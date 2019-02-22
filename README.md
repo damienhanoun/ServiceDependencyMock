@@ -1,14 +1,14 @@
-# 1 Intent
+# Intent
 The project purpose is to define a set of patterns to allow to mock call to others services in order to be able to :
 - launch end to end test in a mastered environment
 - mock a service when it is broken and could take time to be up again (in all environment but production)
-- mock a service on some other environment than production (for call time or money reason)
+- mock a service on all environment but production (for call time or money reason)
 
-# 2 Strategies
+# Strategies
 Look at unit test to understand all available strategies
 The idea is to behave like NSubstitute but with a database between the client which define the mock and the service which get the strategy
 
-# 3 Todo list
+# Todo list
 - Extract the context check in proxy
 - Give example of Factory/Builder/... to build object before send it
 - Give an example with parameter base strategy
