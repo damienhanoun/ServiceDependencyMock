@@ -1,13 +1,20 @@
 # Intent
-The project purpose is to define a set of patterns to allow to mock call to others services in order to be able to :
+The project purpose is to define a set of patterns to allow to mock call to external services in order to be able to :
 - launch end to end test in a mastered environment
 - mock a service when it is broken and could take time to be up again (in all environment but production)
 - mock a service on all environment but production (for call time or money reason)
 
 # Strategies
-Look at unit test to understand all available strategies
+To resume, we have :
+- Method mock
+- Object mock
+- Context which can be used to :
+  * filter on specific context (sessionId or anything else) to know when apply the strategy
+  * containing the object to return
 
-The idea is to behave like NSubstitute but with a database between the client which define the mock and the service which get the strategy
+The idea is to behave like NSubstitute but with a database between the client (which define the mock) and the service (which apply the defined strategy through a proxy)
+
+You should look at unit tests to understand all available strategies
 
 # Todo list
 - Extract the context check in proxy
