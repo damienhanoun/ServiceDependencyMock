@@ -6,6 +6,7 @@ The project purpose is to define a set of patterns to allow to mock call to othe
 
 # Strategies
 Look at unit test to understand all available strategies
+
 The idea is to behave like NSubstitute but with a database between the client which define the mock and the service which get the strategy
 
 # Todo list
