@@ -18,9 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Business.Mock\Business.Mocks.csproj" />
+    <ProjectReference Include="..\Business.Mocks\Business.Mocks.csproj" />
     <ProjectReference Include="..\Business\Business.csproj" />
-    <ProjectReference Include="..\ServiceDependencyMock\MockLibrary.csproj" />
+    <ProjectReference Include="..\MockLibrary\MockLibrary.csproj" />
   </ItemGroup>
 
 </Project>

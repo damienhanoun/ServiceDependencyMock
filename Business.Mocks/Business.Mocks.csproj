@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Business\Business.csproj" />
-    <ProjectReference Include="..\ServiceDependencyMock\MockLibrary.csproj" />
+    <ProjectReference Include="..\MockLibrary\MockLibrary.csproj" />
   </ItemGroup>
 
 </Project>
