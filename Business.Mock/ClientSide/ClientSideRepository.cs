@@ -1,9 +1,9 @@
 ﻿using ServiceDependencyMock;
 
-namespace Business.Mock
+namespace Business.Mock.ClientSide
 {
     public interface ClientSideRepository
     {
-        void Mock(MockType mockType);
+        void Mock(MockStrategyContainer mockType);
     }
 }

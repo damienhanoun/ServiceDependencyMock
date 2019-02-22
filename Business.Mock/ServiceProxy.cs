@@ -1,8 +1,8 @@
-﻿using Business.Mock.ServiceMethods;
-using Business.Mock.ServiceMethods.Get;
+﻿using Business.Mock.ServiceSide;
+using Business.Mock.ServiceSide.ServiceMethodsStrategies;
+using Business.Mock.ServiceSide.ServiceMethodsStrategies.Get;
 using System;
 using Unity;
-
 using static Business.Mock.IOCContainer;
 
 namespace Business.Mock
@@ -22,13 +22,13 @@ namespace Business.Mock
         {
             int? returnedValue = null;
 
-            var mockTypeOption = this.serviceSideQuery.GetNextMock(ServiceIdentifier.GetIdentifier);
+            var mockTypeOption = this.serviceSideQuery.GetNextMock(ServiceMethodsIdentifiers.GetId);
 
             mockTypeOption.MatchSome(mockType =>
             {
                 if (mockType.IsObjectStrategy)
                 {
-                    returnedValue = ((GetContext)mockType.Context).MockedObject;
+                    returnedValue = ((MockContext)mockType.Context).MockedObject;
                 }
                 else if (mockType.IsMethodStrategy)
                 {
@@ -49,13 +49,13 @@ namespace Business.Mock
             return returnedValue.Value;
         }
 
-        private static int? ApplyMethodMockStrategy(ServiceDependencyMock.MockType mockType)
+        private static int? ApplyMethodMockStrategy(ServiceDependencyMock.MockStrategyContainer mockType)
         {
             int? returnedValue;
 
             try
             {
-                var serviceSubstitute = Container.Resolve<ServiceGet>(mockType.Strategy);
+                var serviceSubstitute = Container.Resolve<ServiceGetTemplate>(mockType.Strategy);
                 returnedValue = serviceSubstitute.Get();
             }
             catch (ResolutionFailedException)

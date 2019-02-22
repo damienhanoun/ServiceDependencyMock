@@ -1,7 +1,9 @@
 ﻿using Business;
 using Business.Mock;
-using Business.Mock.ServiceMethods;
-using Business.Mock.ServiceMethods.Get;
+using Business.Mock.ClientSide;
+using Business.Mock.ServiceSide;
+using Business.Mock.ServiceSide.ServiceMethodsStrategies;
+using Business.Mock.ServiceSide.ServiceMethodsStrategies.Get;
 using NFluent;
 using NSubstitute;
 using ServiceDependencyMock;
@@ -19,23 +21,23 @@ namespace TestClient
         private readonly ServiceSideQuery serviceSideQuery;
         private readonly Service service;
 
-        private MockType mockMethodReturnOne => new MockType
+        private MockStrategyContainer mockMethodReturnOne => new MockStrategyContainer
         {
-            MethodIdentifier = ServiceIdentifier.GetIdentifier,
+            MethodIdentifier = ServiceMethodsIdentifiers.GetId,
             Strategy = nameof(ServiceGetOne)
         };
 
-        private MockType mockObjectReturnTwo => new MockType
+        private MockStrategyContainer mockObjectReturnTwo => new MockStrategyContainer
         {
-            MethodIdentifier = ServiceIdentifier.GetIdentifier,
-            Strategy = Strategies.ObjectOnly,
-            Context = new GetContext { MockedObject = 2 }
+            MethodIdentifier = ServiceMethodsIdentifiers.GetId,
+            Strategy = DefaultStrategies.ObjectOnly,
+            Context = new MockContext { MockedObject = 2 }
         };
 
-        private MockType dontMock => new MockType
+        private MockStrategyContainer dontMock => new MockStrategyContainer
         {
-            MethodIdentifier = ServiceIdentifier.GetIdentifier,
-            Strategy = Strategies.None
+            MethodIdentifier = ServiceMethodsIdentifiers.GetId,
+            Strategy = DefaultStrategies.None
         };
 
         public ServiceProxyTest()
@@ -48,7 +50,8 @@ namespace TestClient
 
         public void Dispose()
         {
-            FakeDatabase.MockTypes = new List<MockType>();
+            FakeDatabase.MockTypes = new List<MockStrategyContainer>();
+            ApplicationDatabase.SessionId = null;
         }
 
         [Fact]
@@ -83,7 +86,8 @@ namespace TestClient
             //Arrange
             var mockType = this.mockMethodReturnOne;
 
-            mockType.MethodIdentifier = "e68dbe94-29d3-4b32-8ee9-e16fc907ae00";
+            var anotherMethodId = Guid.NewGuid().ToString();
+            mockType.MethodIdentifier = anotherMethodId;
             this.clientSideRepository.Mock(mockType);
 
             //Act
@@ -97,9 +101,9 @@ namespace TestClient
         public void Should_crash_When_unexisting_strategy_is_used()
         {
             //Arrange
-            var mockType = new MockType
+            var mockType = new MockStrategyContainer
             {
-                MethodIdentifier = ServiceIdentifier.GetIdentifier,
+                MethodIdentifier = ServiceMethodsIdentifiers.GetId,
                 Strategy = "unexisting strategy"
             };
             this.clientSideRepository.Mock(mockType);
@@ -117,11 +121,11 @@ namespace TestClient
         {
             //Arrange
             var specificObject = 10;
-            var mockType = new MockType
+            var mockType = new MockStrategyContainer
             {
-                MethodIdentifier = ServiceIdentifier.GetIdentifier,
-                Strategy = Strategies.ObjectOnly,
-                Context = new GetContext { MockedObject = specificObject }
+                MethodIdentifier = ServiceMethodsIdentifiers.GetId,
+                Strategy = DefaultStrategies.ObjectOnly,
+                Context = new MockContext { MockedObject = specificObject }
             };
             this.clientSideRepository.Mock(mockType);
 
@@ -170,13 +174,13 @@ namespace TestClient
         }
 
         [Fact]
-        public void Should_mock_with_object_according_to_context()
+        public void Should_mock_with_object_When_context_is_the_same()
         {
             //Arrange
             int mockedObjectValue = 1;
             var mockMethodReturnOne = this.mockMethodReturnOne;
-            var sessionId = "9c877052-5cc8-4793-8bd4-d3ea5122f8da";
-            mockMethodReturnOne.Context = new GetContext
+            var sessionId = Guid.NewGuid().ToString();
+            mockMethodReturnOne.Context = new MockContext
             {
                 MockedObject = mockedObjectValue,
                 SessionId = sessionId
@@ -195,15 +199,14 @@ namespace TestClient
         public void Should_not_mock_When_context_is_not_the_same()
         {
             //Arrange
-            var sessionId = "9c877052-5cc8-4793-8bd4-d3ea5122f8da";
-            ApplicationDatabase.SessionId = sessionId;
+            ApplicationDatabase.SessionId = Guid.NewGuid().ToString();
 
             int objectValue = 1;
             var mockMethodReturnOne = this.mockMethodReturnOne;
-            mockMethodReturnOne.Context = new GetContext
+            mockMethodReturnOne.Context = new MockContext
             {
                 MockedObject = 0,
-                SessionId = sessionId
+                SessionId = Guid.NewGuid().ToString()
             };
             this.clientSideRepository.Mock(mockMethodReturnOne);
 

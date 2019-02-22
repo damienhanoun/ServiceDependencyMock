@@ -1,11 +1,11 @@
-﻿namespace Business.Mock.ServiceMethods.Get
+﻿namespace Business.Mock.ServiceSide.ServiceMethodsStrategies.Get
 {
-    public class ServiceGetSaved : ServiceGet
+    public class ServiceGetGeneratedObject : ServiceGetTemplate
     {
         private readonly ServiceSideQuery serviceSideQuery;
         private readonly Service service;
 
-        public ServiceGetSaved(ServiceSideQuery serviceSideQuery, Service service)
+        public ServiceGetGeneratedObject(ServiceSideQuery serviceSideQuery, Service service)
         {
             this.serviceSideQuery = serviceSideQuery;
             this.service = service;
@@ -13,7 +13,7 @@
 
         public override int Get()
         {
-            var context = this.serviceSideQuery.GetNextContext<GetContext>(ServiceIdentifier.GetIdentifier);
+            var context = this.serviceSideQuery.GetNextContext<MockContext>(ServiceMethodsIdentifiers.GetId);
             if (context.SessionId == ApplicationDatabase.SessionId)
                 return context.MockedObject;
 

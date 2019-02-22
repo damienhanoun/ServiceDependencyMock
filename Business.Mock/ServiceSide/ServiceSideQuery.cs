@@ -1,11 +1,11 @@
 ﻿using Optional;
 using ServiceDependencyMock;
 
-namespace Business.Mock
+namespace Business.Mock.ServiceSide
 {
     public interface ServiceSideQuery
     {
-        Option<MockType> GetNextMock(string methodIdentifier);
+        Option<MockStrategyContainer> GetNextMock(string methodIdentifier);
         T GetNextContext<T>(string methodIdentifier);
     }
 }

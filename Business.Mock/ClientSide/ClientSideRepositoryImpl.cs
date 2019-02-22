@@ -1,10 +1,10 @@
 ﻿using ServiceDependencyMock;
 
-namespace Business.Mock
+namespace Business.Mock.ClientSide
 {
     public class ClientSideRepositoryImpl : ClientSideRepository
     {
-        public void Mock(MockType mockType)
+        public void Mock(MockStrategyContainer mockType)
         {
             FakeDatabase.MockTypes.Add(mockType);
         }

@@ -2,17 +2,17 @@
 using ServiceDependencyMock;
 using System.Linq;
 
-namespace Business.Mock
+namespace Business.Mock.ServiceSide
 {
     public class ServiceSideQueryImpl : ServiceSideQuery
     {
-        public Option<MockType> GetNextMock(string methodIdentifier)
+        public Option<MockStrategyContainer> GetNextMock(string methodIdentifier)
         {
             var mockOption = FakeDatabase.MockTypes
                         .Where(m => m.MethodIdentifier == methodIdentifier)
                         .Where(m => m.IsUsed == false)
-                        .Select(m => Option.Some(m))
-                        .DefaultIfEmpty(Option.None<MockType>())
+                        .Select(Option.Some)
+                        .DefaultIfEmpty(Option.None<MockStrategyContainer>())
                         .First();
 
             mockOption.MatchSome(mock => mock.IsUsed = true);
@@ -24,8 +24,8 @@ namespace Business.Mock
         {
             return (T)FakeDatabase.MockTypes
                         .Where(m => m.MethodIdentifier == methodIdentifier)
-                        .Where(m => m.IsUsed == false)
-                        .First().Context;
+                        .First(m => m.IsUsed == false)
+                        .Context;
         }
     }
 }

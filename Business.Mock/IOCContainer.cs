@@ -1,4 +1,6 @@
-﻿using Business.Mock.ServiceMethods.Get;
+﻿using Business.Mock.ClientSide;
+using Business.Mock.ServiceSide;
+using Business.Mock.ServiceSide.ServiceMethodsStrategies.Get;
 using Unity;
 
 namespace Business.Mock
@@ -16,8 +18,8 @@ namespace Business.Mock
                     container = new UnityContainer();
                     container.RegisterType<ClientSideRepository, ClientSideRepositoryImpl>();
                     container.RegisterType<ServiceSideQuery, ServiceSideQueryImpl>();
-                    container.RegisterType<ServiceGet, ServiceGetOne>(nameof(ServiceGetOne));
-                    container.RegisterType<ServiceGet, ServiceGetSaved>(nameof(ServiceGetSaved));
+                    container.RegisterType<ServiceGetTemplate, ServiceGetOne>(nameof(ServiceGetOne));
+                    container.RegisterType<ServiceGetTemplate, ServiceGetGeneratedObject>(nameof(ServiceGetGeneratedObject));
                 }
 
                 return container;
