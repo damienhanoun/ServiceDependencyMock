@@ -3,18 +3,22 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MockLibrary", "MockLibrary\MockLibrary.csproj", "{EC99A550-DB45-4DD5-BE3A-F40A896FC3D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mock.Library", "Mock.Library\Mock.Library.csproj", "{EC99A550-DB45-4DD5-BE3A-F40A896FC3D5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestClient", "TestClient\TestClient.csproj", "{D2373A74-2213-48F7-8EE1-7A4610999909}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{D2373A74-2213-48F7-8EE1-7A4610999909}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business", "Business\Business.csproj", "{8F544D8F-442B-4D1F-AC9D-9136F8E85F5B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExternalDependency", "ExternalDependency\ExternalDependency.csproj", "{8F544D8F-442B-4D1F-AC9D-9136F8E85F5B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business.Mocks", "Business.Mocks\Business.Mocks.csproj", "{8F738299-07BE-48CC-B6FE-BCE5AA923D82}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mock.ClientSide", "Mock.ClientSide\Mock.ClientSide.csproj", "{8F738299-07BE-48CC-B6FE-BCE5AA923D82}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3E7FF1A8-32A9-4F16-A4A3-1088CE1B1052}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mock.ApplicationSide", "Mock.ApplicationSide\Mock.ApplicationSide.csproj", "{47CA10F8-B3B5-4D72-8DB1-A559EE54FFAF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedDatabase", "SharedDatabase\SharedDatabase.csproj", "{C564B177-8B8F-4490-82DB-0EABDCCC17D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +42,14 @@ Global
 		{8F738299-07BE-48CC-B6FE-BCE5AA923D82}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F738299-07BE-48CC-B6FE-BCE5AA923D82}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F738299-07BE-48CC-B6FE-BCE5AA923D82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47CA10F8-B3B5-4D72-8DB1-A559EE54FFAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47CA10F8-B3B5-4D72-8DB1-A559EE54FFAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47CA10F8-B3B5-4D72-8DB1-A559EE54FFAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47CA10F8-B3B5-4D72-8DB1-A559EE54FFAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C564B177-8B8F-4490-82DB-0EABDCCC17D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C564B177-8B8F-4490-82DB-0EABDCCC17D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C564B177-8B8F-4490-82DB-0EABDCCC17D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C564B177-8B8F-4490-82DB-0EABDCCC17D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
