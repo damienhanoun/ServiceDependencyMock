@@ -1,20 +1,20 @@
 ﻿using Mock.Library;
-using Mock.Library.ApplicationSide;
-using Optional;
+using Mock.Library.ApplyStrategySide;
 using Optional.Unsafe;
 using SharedDatabase;
+using System;
 using System.Linq;
 
-namespace Mock.ApplicationSide
+namespace Mock.ApplyStrategySide
 {
-    public class ApplicationSideQueryImpl : ApplicationSideQuery
+    public class MockStrategyQueryImpl : MockStrategyQuery
     {
-        public Option<MockStrategy> GetMockStrategy(string methodIdentifier)
+        public MockStrategy GetMockStrategy(string methodIdentifier, Func<MockStrategy, bool> inWantedContext)
         {
             return MockStrategiesDatabase.MockStrategies
                         .Where(m => m.MethodId == methodIdentifier)
-                        .Select(Option.Some)
-                        .DefaultIfEmpty(Option.None<MockStrategy>())
+                        .Where(inWantedContext)
+                        .DefaultIfEmpty(new NoMockStrategy())
                         .First();
         }
 

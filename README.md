@@ -14,7 +14,7 @@ We have 3 strategies:
 - Object mock
 - Force no mock (available if you want to not mock between two mocks)
 
-Both can have a context which can be used to :
+All can have a context which can be used to :
   * filter on specific context (sessionId or anything else) to know when apply the strategy
   * help to do a calculation in a specific strategy
 
@@ -29,5 +29,4 @@ Both can have a context which can be used to :
 - Example with async
 - Add some analyse method to be sure that all call has been used and not more or less for end to end test purpose
 - Create a view to allow mock on demand
-- Give an example with front application to show interaction
 - Generate proxy dynamicly

@@ -1,4 +1,4 @@
-﻿namespace Mock.ApplicationSide
+﻿namespace Mock.ApplyStrategySide
 {
     public static class ApplicationDatabase
     {

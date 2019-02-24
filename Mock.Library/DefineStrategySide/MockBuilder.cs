@@ -1,4 +1,4 @@
-﻿namespace Mock.Library.ClientSide
+﻿namespace Mock.Library.DefineStrategySide
 {
     public class MockStrategyBuilder
     {

@@ -1,11 +1,10 @@
-﻿using Mock.ApplicationSide.ServiceMethodsStrategies.Get;
-using Mock.Library;
-using Mock.Library.ClientSide;
+﻿using Mock.ApplyStrategySide.ServiceMethodsStrategies.Get;
+using Mock.Library.DefineStrategySide;
 using NFluent;
 using Optional;
 using Xunit;
 
-namespace Tests
+namespace Mock.Library.Tests
 {
     public class MockBuilderTest
     {

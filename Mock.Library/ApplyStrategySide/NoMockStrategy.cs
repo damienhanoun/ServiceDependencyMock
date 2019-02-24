@@ -1,4 +1,4 @@
-﻿namespace Mock.Library.ApplicationSide
+﻿namespace Mock.Library.ApplyStrategySide
 {
     public class NoMockStrategy : MockStrategy
     {

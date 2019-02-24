@@ -1,22 +1,22 @@
 ﻿using ExternalDependency;
-using Mock.ApplicationSide.ServiceMethodsStrategies;
-using Mock.ApplicationSide.ServiceMethodsStrategies.Get;
+using Mock.ApplyStrategySide.ServiceMethodsStrategies.Get;
 using Mock.Library;
-using Mock.Library.ApplicationSide;
+using Mock.Library.ApplyStrategySide;
 using System;
 using Unity;
-using static Mock.ApplicationSide.IOCContainer;
+using static Mock.ApplyStrategySide.IOCContainer;
+using static Mock.ApplyStrategySide.ServiceMethodsStrategies.ServiceMethodsIdentifiers;
 
-namespace Mock.ApplicationSide
+namespace Mock.ApplyStrategySide
 {
     public class ServiceProxy : Service
     {
         private readonly Service service;
-        private readonly ApplicationSideQuery serviceSideQuery;
+        private readonly MockStrategyQuery mockStrategyQuery;
 
-        public ServiceProxy(ApplicationSideQuery serviceSideQuery, Service service)
+        public ServiceProxy(MockStrategyQuery mockStrategyQuery, Service service)
         {
-            this.serviceSideQuery = serviceSideQuery;
+            this.mockStrategyQuery = mockStrategyQuery;
             this.service = service;
         }
 
@@ -24,10 +24,9 @@ namespace Mock.ApplicationSide
         {
             int returnedValue;
 
-            var mockStrategy = this.serviceSideQuery.GetMockStrategy(ServiceMethodsIdentifiers.Get)
-                                                    .ValueOr(new NoMockStrategy());
+            var mockStrategy = this.mockStrategyQuery.GetMockStrategy(GetId, InWantedContext());
 
-            if (NoMockStrategy(mockStrategy) || !InWantedContext(mockStrategy))
+            if (NoMockStrategy(mockStrategy))
             {
                 returnedValue = this.service.Get();
             }
@@ -45,7 +44,7 @@ namespace Mock.ApplicationSide
             }
 
             if (!(mockStrategy is NoMockStrategy))
-                this.serviceSideQuery.RemoveStrategy(mockStrategy);
+                this.mockStrategyQuery.RemoveStrategy(mockStrategy);
 
             return returnedValue;
         }
@@ -55,16 +54,19 @@ namespace Mock.ApplicationSide
             return mockStrategy is NoMockStrategy || mockStrategy is ForceNoMockStrategy;
         }
 
-        private static bool InWantedContext(MockStrategy mockStrategy)
+        private static Func<MockStrategy, bool> InWantedContext()
         {
-            bool inWantedContext = true;
-            mockStrategy.Context.MatchSome(c =>
+            return s =>
             {
-                var context = c as GetMockContext;
-                if (context.SessionId != ApplicationDatabase.SessionId)
-                    inWantedContext = false;
-            });
-            return inWantedContext;
+                bool inWantedContext = true;
+                s.Context.MatchSome(c =>
+                {
+                    var context = c as GetMockContext;
+                    if (context.SessionId != null && context.SessionId != ApplicationDatabase.SessionId)
+                        inWantedContext = false;
+                });
+                return inWantedContext;
+            };
         }
 
         private static int ApplyMethodMockStrategy(MethodToMockWithMethodStrategy methodStrategy)

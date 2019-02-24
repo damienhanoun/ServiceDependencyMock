@@ -1,7 +1,7 @@
-﻿using Mock.ApplicationSide.ServiceMethodsStrategies.Get;
+﻿using Mock.ApplyStrategySide.ServiceMethodsStrategies.Get;
 using Unity;
 
-namespace Mock.ApplicationSide
+namespace Mock.ApplyStrategySide
 {
     public static class IOCContainer
     {

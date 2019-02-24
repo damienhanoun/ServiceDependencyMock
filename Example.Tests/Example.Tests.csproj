@@ -19,8 +19,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ExternalDependency\ExternalDependency.csproj" />
-    <ProjectReference Include="..\Mock.ApplicationSide\Mock.ApplicationSide.csproj" />
-    <ProjectReference Include="..\Mock.ClientSide\Mock.ClientSide.csproj" />
+    <ProjectReference Include="..\Mock.ApplyStrategySide\Mock.ApplyStrategySide.csproj" />
+    <ProjectReference Include="..\Mock.DefineStrategySide\Mock.DefineStrategySide.csproj" />
     <ProjectReference Include="..\Mock.Library\Mock.Library.csproj" />
   </ItemGroup>
 

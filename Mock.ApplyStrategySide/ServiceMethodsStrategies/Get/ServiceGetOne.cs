@@ -1,4 +1,4 @@
-﻿namespace Mock.ApplicationSide.ServiceMethodsStrategies.Get
+﻿namespace Mock.ApplyStrategySide.ServiceMethodsStrategies.Get
 {
     public class ServiceGetOne : ServiceGetTemplate
     {

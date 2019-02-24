@@ -1,6 +1,6 @@
 ﻿using Optional;
 
-namespace Mock.Library.ClientSide
+namespace Mock.Library.DefineStrategySide
 {
     public static class StrategiesExtension
     {

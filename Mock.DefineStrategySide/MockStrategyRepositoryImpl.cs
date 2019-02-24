@@ -1,10 +1,10 @@
 ﻿using Mock.Library;
-using Mock.Library.ClientSide;
+using Mock.Library.DefineStrategySide;
 using SharedDatabase;
 
-namespace Mock.ClientSide
+namespace Mock.DefineStrategySide
 {
-    public class ClientSideRepositoryImpl : ClientSideRepository
+    public class MockStrategyRepositoryImpl : MockRepository
     {
         public void MockMethod(MethodToMockWithMethodStrategy mockObjectStrategy)
         {
