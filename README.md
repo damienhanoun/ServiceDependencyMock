@@ -19,14 +19,18 @@ All can have a context which can be used to :
   * help to do a calculation in a specific strategy
 
 # Todo list
-- Create a "mock always with" strategy and create a way to stop it
-- Use a real database to save mock strategies
-- Give example of Factory/Builder/... to build object before send it
-- Give an example with parameter base strategy
-- Give an example with multiple methods for the main class
-- Not have to use method id. Look for NSubstitute like behavior with DynamicProxy like "myService.Get(Arg.Any()).Return(...)""
-- Create a "mock only on error" strategy
-- Example with async
-- Add some analyse method to be sure that all call has been used and not more or less for end to end test purpose
-- Create a view to allow mock on demand
+
+## Functionalities
+- Use available accounts with good right for sql server implementation
 - Generate proxy dynamicly
+- Create a "mock always with" strategy and create a way to stop it
+- Create a "mock only on error" strategy
+- Add some analyse method to be sure that all call has been used and not more or less for end to end test purpose
+- Not have to use method id. Look for NSubstitute like behavior with DynamicProxy like "myService.Get(Arg.Any()).Return(...)""
+- Create a view to allow mock on demand
+
+## Examples
+- With context that help calculation in a mocked method
+- With parameter base strategy
+- With multiple methods for the main class
+- With builder for object strategy

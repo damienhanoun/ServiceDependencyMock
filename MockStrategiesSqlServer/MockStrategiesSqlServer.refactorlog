@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="6d9b03fd-07dd-412a-8a37-e7a74ec35934" ChangeDateTime="03/02/2019 17:31:15">
+    <Property Name="ElementName" Value="[dbo].[MockStrategy].[configuration]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[MockStrategy]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="serializedStrategy" />
+  </Operation>
+</Operations>

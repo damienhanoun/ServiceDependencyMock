@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Unity" Version="5.9.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ExternalDependency\ExternalDependency.csproj" />
+    <ProjectReference Include="..\Mock.Apply.Strategy\Mock.Apply.Strategy.csproj" />
+    <ProjectReference Include="..\Mock.Strategies\Mock.Strategies.csproj" />
+  </ItemGroup>
+
+</Project>
