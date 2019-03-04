@@ -1,6 +1,7 @@
 ﻿using DatabasesObjects.SqlServer;
 using Mock.Strategies;
 using System;
+using System.Threading;
 
 namespace Mock.Define.Strategy.MockStrategyRepositoryImplementations
 {
@@ -10,6 +11,8 @@ namespace Mock.Define.Strategy.MockStrategyRepositoryImplementations
         {
             using (var context = new MockStrategiesContext())
             {
+                this.PreventBadCreationDateOrderingWhenThisOneEqualsToPreviousOne();
+
                 var mockStrategy = new DatabasesObjects.SqlServer.MockStrategy
                 {
                     Id = noMockStrategy.Id,
@@ -26,6 +29,8 @@ namespace Mock.Define.Strategy.MockStrategyRepositoryImplementations
         {
             using (var context = new MockStrategiesContext())
             {
+                this.PreventBadCreationDateOrderingWhenThisOneEqualsToPreviousOne();
+
                 var mockStrategy = new DatabasesObjects.SqlServer.MockStrategy
                 {
                     Id = mockMethodStrategy.Id,
@@ -42,6 +47,8 @@ namespace Mock.Define.Strategy.MockStrategyRepositoryImplementations
         {
             using (var context = new MockStrategiesContext())
             {
+                this.PreventBadCreationDateOrderingWhenThisOneEqualsToPreviousOne();
+
                 var mockStrategy = new DatabasesObjects.SqlServer.MockStrategy
                 {
                     Id = mockObjectStrategy.Id,
@@ -52,6 +59,11 @@ namespace Mock.Define.Strategy.MockStrategyRepositoryImplementations
                 context.MockStrategy.Add(mockStrategy);
                 context.SaveChanges();
             }
+        }
+
+        private void PreventBadCreationDateOrderingWhenThisOneEqualsToPreviousOne()
+        {
+            Thread.Sleep(30);
         }
     }
 }
