@@ -1,6 +1,6 @@
 ﻿using DatabasesObjects.SqlServer;
+using Mock.Define.Strategy.Helpers;
 using Mock.Strategies;
-using System;
 using System.Threading;
 
 namespace Mock.Define.Strategy.MockStrategyRepositoryImplementations
@@ -13,14 +13,8 @@ namespace Mock.Define.Strategy.MockStrategyRepositoryImplementations
             {
                 this.PreventBadCreationDateOrderingWhenThisOneEqualsToPreviousOne();
 
-                var mockStrategy = new DatabasesObjects.SqlServer.MockStrategy
-                {
-                    Id = noMockStrategy.Id,
-                    MethodId = noMockStrategy.MethodId,
-                    CreationDate = DateTime.UtcNow,
-                    SerializedStrategy = Serializer.Serialise(noMockStrategy)
-                };
-                context.MockStrategy.Add(mockStrategy);
+                var mockStrategySqlServer = noMockStrategy.ToSqlServerFormat();
+                context.MockStrategy.Add(mockStrategySqlServer);
                 context.SaveChanges();
             }
         }
@@ -31,14 +25,8 @@ namespace Mock.Define.Strategy.MockStrategyRepositoryImplementations
             {
                 this.PreventBadCreationDateOrderingWhenThisOneEqualsToPreviousOne();
 
-                var mockStrategy = new DatabasesObjects.SqlServer.MockStrategy
-                {
-                    Id = mockMethodStrategy.Id,
-                    MethodId = mockMethodStrategy.MethodId,
-                    CreationDate = DateTime.UtcNow,
-                    SerializedStrategy = Serializer.Serialise(mockMethodStrategy)
-                };
-                context.MockStrategy.Add(mockStrategy);
+                var mockStrategySqlServer = mockMethodStrategy.ToSqlServerFormat();
+                context.MockStrategy.Add(mockStrategySqlServer);
                 context.SaveChanges();
             }
         }
@@ -49,14 +37,8 @@ namespace Mock.Define.Strategy.MockStrategyRepositoryImplementations
             {
                 this.PreventBadCreationDateOrderingWhenThisOneEqualsToPreviousOne();
 
-                var mockStrategy = new DatabasesObjects.SqlServer.MockStrategy
-                {
-                    Id = mockObjectStrategy.Id,
-                    MethodId = mockObjectStrategy.MethodId,
-                    CreationDate = DateTime.UtcNow,
-                    SerializedStrategy = Serializer.Serialise(mockObjectStrategy)
-                };
-                context.MockStrategy.Add(mockStrategy);
+                var mockStrategySqlServer = mockObjectStrategy.ToSqlServerFormat();
+                context.MockStrategy.Add(mockStrategySqlServer);
                 context.SaveChanges();
             }
         }
