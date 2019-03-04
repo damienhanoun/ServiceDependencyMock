@@ -21,19 +21,20 @@ namespace Examples
     {
         private readonly ServiceProxy serviceProxy;
 
-        private readonly MockStrategyRepository defineStrategySideRepository;
-        private readonly MockStrategyQuery serviceSideQuery;
+        private readonly MockStrategyRepository mockStrategyRepository;
+        private readonly MockStrategyQuery mockStrategyQuery;
         private readonly Service service;
 
         public ServiceProxyTest()
         {
-            this.defineStrategySideRepository = new MockStrategyRepositoryCSharp();
-            this.serviceSideQuery = new MockStrategyQueryCSharp();
-            this.service = Substitute.For<Service>();
-            this.serviceProxy = new ServiceProxy(this.serviceSideQuery, this.service);
+            this.mockStrategyRepository = new MockStrategyRepositoryCSharp();
+            this.mockStrategyQuery = new MockStrategyQueryCSharp();
+            //this.mockStrategyRepository = new MockStrategyRepositorySqlServer();
+            //this.mockStrategyQuery = new MockStrategyQuerySqlServer();
 
-            //this.defineStrategySideRepository = new MockStrategyRepositorySqlServer();
-            //this.serviceSideQuery = new MockStrategyQuerySqlServer();
+            this.service = Substitute.For<Service>();
+            this.serviceProxy = new ServiceProxy(this.mockStrategyQuery, this.service);
+
             //using (var context = new MockStrategiesContext())
             //    context.Database.ExecuteSqlCommand("TRUNCATE TABLE MockStrategy");
         }
@@ -49,7 +50,7 @@ namespace Examples
         {
             //Arrange
             var mockMethodStrategy = MockStrategyBuilder.ForMethod(GetId).WithStrategy(nameof(ServiceGetOne));
-            this.defineStrategySideRepository.MockMethod(mockMethodStrategy);
+            this.mockStrategyRepository.MockMethod(mockMethodStrategy);
 
             //Act
             var result = this.serviceProxy.Get();
@@ -77,7 +78,7 @@ namespace Examples
             //Arrange
             var methodMockStrategy = MockStrategyBuilder.ForMethod("fakeMethodId")
                                             .WithStrategy(nameof(ServiceGetOne));
-            this.defineStrategySideRepository.MockMethod(methodMockStrategy);
+            this.mockStrategyRepository.MockMethod(methodMockStrategy);
 
             //Act
             this.serviceProxy.Get();
@@ -91,7 +92,7 @@ namespace Examples
         {
             //Arrange
             var methodMockStrategy = MockStrategyBuilder.ForMethod(GetId).WithStrategy("unexisting strategy");
-            this.defineStrategySideRepository.MockMethod(methodMockStrategy);
+            this.mockStrategyRepository.MockMethod(methodMockStrategy);
 
             //Act
             Action action = () => this.serviceProxy.Get();
@@ -107,7 +108,7 @@ namespace Examples
             //Arrange
             var specificObject = 10;
             var mockObjectStrategy = MockStrategyBuilder.ForMethod(GetId).WithObject(specificObject);
-            this.defineStrategySideRepository.MockObject(mockObjectStrategy);
+            this.mockStrategyRepository.MockObject(mockObjectStrategy);
 
             //Act
             var result = this.serviceProxy.Get();
@@ -123,8 +124,8 @@ namespace Examples
             var firstMockStrategy = MockStrategyBuilder.ForMethod(GetId).WithObject(1);
             var secondMockStrategy = MockStrategyBuilder.ForMethod(GetId).WithObject(2);
 
-            this.defineStrategySideRepository.MockObject(firstMockStrategy);
-            this.defineStrategySideRepository.MockObject(secondMockStrategy);
+            this.mockStrategyRepository.MockObject(firstMockStrategy);
+            this.mockStrategyRepository.MockObject(secondMockStrategy);
 
             //Act
             var result1 = this.serviceProxy.Get();
@@ -145,9 +146,9 @@ namespace Examples
 
             this.service.Get().Returns(2);
 
-            this.defineStrategySideRepository.MockObject(firstMockStrategy);
-            this.defineStrategySideRepository.DontMock(secondMockStrategy);
-            this.defineStrategySideRepository.MockObject(thirdMockStrategy);
+            this.mockStrategyRepository.MockObject(firstMockStrategy);
+            this.mockStrategyRepository.DontMock(secondMockStrategy);
+            this.mockStrategyRepository.MockObject(thirdMockStrategy);
 
             //Act
             var result1 = this.serviceProxy.Get();
@@ -172,7 +173,7 @@ namespace Examples
                 .WithObject(1)
                 .WithContext(new GetMockContext { SessionId = sessionId });
 
-            this.defineStrategySideRepository.MockObject(mockStrategyWithSameContext);
+            this.mockStrategyRepository.MockObject(mockStrategyWithSameContext);
 
             //Act
             var result = this.serviceProxy.Get();
@@ -190,7 +191,7 @@ namespace Examples
             var mockStrategyWithDifferentContext = MockStrategyBuilder.ForMethod(GetId)
                 .WithObject(1)
                 .WithContext(new GetMockContext { SessionId = Guid.NewGuid().ToString() });
-            this.defineStrategySideRepository.MockObject(mockStrategyWithDifferentContext);
+            this.mockStrategyRepository.MockObject(mockStrategyWithDifferentContext);
 
             this.service.Get().Returns(2);
 
@@ -215,8 +216,8 @@ namespace Examples
                 .WithObject(2)
                 .WithContext(new GetMockContext { SessionId = sessionId });
 
-            this.defineStrategySideRepository.MockObject(mockStrategyWithDifferentContext);
-            this.defineStrategySideRepository.MockObject(mockStrategyWithSameContext);
+            this.mockStrategyRepository.MockObject(mockStrategyWithDifferentContext);
+            this.mockStrategyRepository.MockObject(mockStrategyWithSameContext);
 
             //Act
             var result = this.serviceProxy.Get();
@@ -235,7 +236,7 @@ namespace Examples
                 .WithObject(1)
                 .WithContext(new GetMockContext { SessionId = null });
 
-            this.defineStrategySideRepository.MockObject(mockStrategyWithDifferentContext);
+            this.mockStrategyRepository.MockObject(mockStrategyWithDifferentContext);
 
             //Act
             var result = this.serviceProxy.Get();
