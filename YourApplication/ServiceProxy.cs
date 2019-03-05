@@ -43,7 +43,7 @@ namespace YourApplication
                 throw new Exception("Current mock strategy is not take in account");
             }
 
-            if (!(mockStrategy is NoMockStrategy))
+            if (!(mockStrategy is NoMockStrategy) && !mockStrategy.IsAlwaysApplied)
                 this.mockStrategyQuery.RemoveStrategy(mockStrategy);
 
             return returnedValue;

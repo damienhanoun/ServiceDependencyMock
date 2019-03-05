@@ -1,4 +1,5 @@
 ﻿using Mock.Define.Strategy.Builder;
+using Mock.Define.Strategy.Helpers;
 using Mock.Strategies;
 using NFluent;
 using Optional;
@@ -133,6 +134,19 @@ namespace Mock.Define.Strategy.Tests
                 MockedObject = mockedObject
             };
             Check.That(mockStrategy).IsEqualTo(expectedMockStrategy);
+        }
+
+        [Fact]
+        public void Should_build_with_an_alwaysMockWith_strategy()
+        {
+            //Arrange
+            var mockStrategy = new MockStrategy { IsAlwaysApplied = false };
+
+            //Act
+            mockStrategy = mockStrategy.AlwaysApply();
+
+            //Assert
+            Check.That(mockStrategy.IsAlwaysApplied).IsEqualTo(true);
         }
     }
 }

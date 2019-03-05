@@ -4,6 +4,7 @@ using Mock.Apply.Strategy;
 using Mock.Apply.Strategy.MockStrategyQueryImplementations;
 using Mock.Define.Strategy;
 using Mock.Define.Strategy.Builder;
+using Mock.Define.Strategy.Helpers;
 using Mock.Define.Strategy.MockStrategyRepositoryImplementations;
 using MockStrategiesCSharp;
 using NFluent;
@@ -243,6 +244,25 @@ namespace Examples
 
             //Assert
             Check.That(result).IsEqualTo(1);
+        }
+
+        [Fact]
+        public void Should_always_mock_with_strategy()
+        {
+            //Arrange
+            var mockStrategyAlwaysApplied = MockStrategyBuilder.ForMethod(GetId)
+                .WithObject(1)
+                .AlwaysApply();
+
+            this.mockStrategyRepository.MockObject(mockStrategyAlwaysApplied);
+
+            //Act
+            var result = this.serviceProxy.Get();
+            var result2 = this.serviceProxy.Get();
+
+            //Assert
+            Check.That(result).IsEqualTo(1);
+            Check.That(result2).IsEqualTo(1);
         }
     }
 }

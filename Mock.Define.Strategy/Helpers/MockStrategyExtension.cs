@@ -15,5 +15,11 @@ namespace Mock.Define.Strategy.Helpers
                 SerializedStrategy = Serializer.Serialise(mockStrategy)
             };
         }
+
+        public static T AlwaysApply<T>(this T mockStrategy) where T : MockStrategy
+        {
+            mockStrategy.IsAlwaysApplied = true;
+            return mockStrategy;
+        }
     }
 }

@@ -9,10 +9,12 @@ namespace Mock.Strategies
     {
         public string Id = Guid.NewGuid().ToString();
         public string MethodId;
+        public bool IsAlwaysApplied;
         public Option<dynamic> Context;
 
         public MockStrategy()
         {
+            this.IsAlwaysApplied = false;
             this.Context = Option.None<dynamic>();
         }
 
@@ -28,7 +30,8 @@ namespace Mock.Strategies
                 (mockStrategy.Context.HasValue && this.Context.HasValue &&
                     mockStrategy.Context.ValueOrFailure()
                     .Equals(this.Context.ValueOrFailure())) ||
-                (!mockStrategy.Context.HasValue && !this.Context.HasValue);
+                (!mockStrategy.Context.HasValue && !this.Context.HasValue)
+                && mockStrategy.IsAlwaysApplied == this.IsAlwaysApplied;
         }
     }
 }
