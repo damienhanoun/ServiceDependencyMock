@@ -10,6 +10,47 @@ namespace Mock.Define.Strategy.Tests
     public class MockBuilderTest
     {
         [Fact]
+        public void Should_build_noMockStrategy_with_context()
+        {
+            //Arrange
+            var methodId = "id";
+            var context = new GetMockContext { };
+
+            //Act
+            var mockStrategy = MockStrategyBuilder
+                .ForMethod(methodId)
+                .WithoutMock()
+                .WithContext(context);
+
+            //Assert
+            var expectedMockStrategy = new ForceNoMockStrategy()
+            {
+                MethodId = methodId,
+                Context = Option.Some<dynamic>(context)
+            };
+            Check.That(mockStrategy).IsEqualTo(expectedMockStrategy);
+        }
+
+        [Fact]
+        public void Should_build_noMockStrategy()
+        {
+            //Arrange
+            var methodId = "id";
+
+            //Act
+            var mockStrategy = MockStrategyBuilder
+                .ForMethod(methodId)
+                .WithoutMock();
+
+            //Assert
+            var expectedMockStrategy = new ForceNoMockStrategy()
+            {
+                MethodId = methodId
+            };
+            Check.That(mockStrategy).IsEqualTo(expectedMockStrategy);
+        }
+
+        [Fact]
         public void Should_build_mockMethodStrategy_with_context()
         {
             //Arrange
