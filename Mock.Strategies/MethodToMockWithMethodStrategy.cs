@@ -5,7 +5,7 @@ namespace Mock.Strategies
     [Serializable]
     public class MethodToMockWithMethodStrategy : MockStrategy
     {
-        public string Strategy;
+        public string MethodMockStrategy;
 
         public override int GetHashCode()
         {
@@ -15,7 +15,7 @@ namespace Mock.Strategies
         public override bool Equals(object obj)
         {
             var mockStrategy = (MethodToMockWithMethodStrategy)obj;
-            return this.Strategy == mockStrategy.Strategy
+            return this.MethodMockStrategy == mockStrategy.MethodMockStrategy
                 && base.Equals(obj);
         }
     }

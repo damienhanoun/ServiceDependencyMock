@@ -50,7 +50,7 @@ namespace Examples
         public void Should_mock_method_behavior()
         {
             //Arrange
-            var mockMethodStrategy = MockStrategyBuilder.ForMethod(GetId).WithStrategy(nameof(ServiceGetOne));
+            var mockMethodStrategy = MockStrategyBuilder.ForMethod(GetId).OnceWithMethodMockStrategy(nameof(ServiceGetOne));
             this.mockStrategyRepository.MockMethod(mockMethodStrategy);
 
             //Act
@@ -78,7 +78,7 @@ namespace Examples
         {
             //Arrange
             var methodMockStrategy = MockStrategyBuilder.ForMethod("fakeMethodId")
-                                            .WithStrategy(nameof(ServiceGetOne));
+                                            .OnceWithMethodMockStrategy(nameof(ServiceGetOne));
             this.mockStrategyRepository.MockMethod(methodMockStrategy);
 
             //Act
@@ -92,7 +92,7 @@ namespace Examples
         public void Should_crash_When_unexisting_method_strategy_is_used()
         {
             //Arrange
-            var methodMockStrategy = MockStrategyBuilder.ForMethod(GetId).WithStrategy("unexisting strategy");
+            var methodMockStrategy = MockStrategyBuilder.ForMethod(GetId).OnceWithMethodMockStrategy("unexisting strategy");
             this.mockStrategyRepository.MockMethod(methodMockStrategy);
 
             //Act
@@ -100,7 +100,7 @@ namespace Examples
 
             //Assert
             Check.ThatCode(action).Throws<Exception>()
-                 .WithMessage($"Method strategy '{methodMockStrategy.Strategy}' is not defined");
+                 .WithMessage($"Method strategy '{methodMockStrategy.MethodMockStrategy}' is not defined");
         }
 
         [Fact]
@@ -108,7 +108,7 @@ namespace Examples
         {
             //Arrange
             var specificObject = 10;
-            var mockObjectStrategy = MockStrategyBuilder.ForMethod(GetId).WithObject(specificObject);
+            var mockObjectStrategy = MockStrategyBuilder.ForMethod(GetId).OnceWithObject(specificObject);
             this.mockStrategyRepository.MockObject(mockObjectStrategy);
 
             //Act
@@ -122,8 +122,8 @@ namespace Examples
         public void Should_mock_with_First_In_First_Out_Strategy()
         {
             //Arrange
-            var firstMockStrategy = MockStrategyBuilder.ForMethod(GetId).WithObject(1);
-            var secondMockStrategy = MockStrategyBuilder.ForMethod(GetId).WithObject(2);
+            var firstMockStrategy = MockStrategyBuilder.ForMethod(GetId).OnceWithObject(1);
+            var secondMockStrategy = MockStrategyBuilder.ForMethod(GetId).OnceWithObject(2);
 
             this.mockStrategyRepository.MockObject(firstMockStrategy);
             this.mockStrategyRepository.MockObject(secondMockStrategy);
@@ -141,9 +141,9 @@ namespace Examples
         public void Should_not_mock_one_call_between_two_mocked_call()
         {
             //Arrange
-            var firstMockStrategy = MockStrategyBuilder.ForMethod(GetId).WithObject(1);
-            var secondMockStrategy = MockStrategyBuilder.ForMethod(GetId).WithoutMock();
-            var thirdMockStrategy = MockStrategyBuilder.ForMethod(GetId).WithObject(3);
+            var firstMockStrategy = MockStrategyBuilder.ForMethod(GetId).OnceWithObject(1);
+            var secondMockStrategy = MockStrategyBuilder.ForMethod(GetId).OnceWithoutMock();
+            var thirdMockStrategy = MockStrategyBuilder.ForMethod(GetId).OnceWithObject(3);
 
             this.service.Get().Returns(2);
 
@@ -171,7 +171,7 @@ namespace Examples
             ApplicationDatabase.SessionId = sessionId;
 
             var mockStrategyWithSameContext = MockStrategyBuilder.ForMethod(GetId)
-                .WithObject(1)
+                .OnceWithObject(1)
                 .WithContext(new GetMockContext { SessionId = sessionId });
 
             this.mockStrategyRepository.MockObject(mockStrategyWithSameContext);
@@ -190,7 +190,7 @@ namespace Examples
             ApplicationDatabase.SessionId = Guid.NewGuid().ToString();
 
             var mockStrategyWithDifferentContext = MockStrategyBuilder.ForMethod(GetId)
-                .WithObject(1)
+                .OnceWithObject(1)
                 .WithContext(new GetMockContext { SessionId = Guid.NewGuid().ToString() });
             this.mockStrategyRepository.MockObject(mockStrategyWithDifferentContext);
 
@@ -211,10 +211,10 @@ namespace Examples
             ApplicationDatabase.SessionId = sessionId;
 
             var mockStrategyWithDifferentContext = MockStrategyBuilder.ForMethod(GetId)
-                .WithObject(1)
+                .OnceWithObject(1)
                 .WithContext(new GetMockContext { SessionId = Guid.NewGuid().ToString() });
             var mockStrategyWithSameContext = MockStrategyBuilder.ForMethod(GetId)
-                .WithObject(2)
+                .OnceWithObject(2)
                 .WithContext(new GetMockContext { SessionId = sessionId });
 
             this.mockStrategyRepository.MockObject(mockStrategyWithDifferentContext);
@@ -234,7 +234,7 @@ namespace Examples
             ApplicationDatabase.SessionId = Guid.NewGuid().ToString();
 
             var mockStrategyWithDifferentContext = MockStrategyBuilder.ForMethod(GetId)
-                .WithObject(1)
+                .OnceWithObject(1)
                 .WithContext(new GetMockContext { SessionId = null });
 
             this.mockStrategyRepository.MockObject(mockStrategyWithDifferentContext);
@@ -251,8 +251,7 @@ namespace Examples
         {
             //Arrange
             var mockStrategyAlwaysApplied = MockStrategyBuilder.ForMethod(GetId)
-                .WithObject(1)
-                .AlwaysApply();
+                .AlwaysWithObject(1);
 
             this.mockStrategyRepository.MockObject(mockStrategyAlwaysApplied);
 

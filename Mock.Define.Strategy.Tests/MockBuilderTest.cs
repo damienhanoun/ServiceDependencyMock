@@ -20,7 +20,7 @@ namespace Mock.Define.Strategy.Tests
             //Act
             var mockStrategy = MockStrategyBuilder
                 .ForMethod(methodId)
-                .WithoutMock()
+                .OnceWithoutMock()
                 .WithContext(context);
 
             //Assert
@@ -41,7 +41,7 @@ namespace Mock.Define.Strategy.Tests
             //Act
             var mockStrategy = MockStrategyBuilder
                 .ForMethod(methodId)
-                .WithoutMock();
+                .OnceWithoutMock();
 
             //Assert
             var expectedMockStrategy = new ForceNoMockStrategy()
@@ -61,34 +61,54 @@ namespace Mock.Define.Strategy.Tests
             //Act
             var mockStrategy = MockStrategyBuilder
                 .ForMethod(methodId)
-                .WithStrategy(nameof(ServiceGetOne))
+                .OnceWithMethodMockStrategy(nameof(ServiceGetOne))
                 .WithContext(context);
 
             //Assert
             var expectedMockStrategy = new MethodToMockWithMethodStrategy()
             {
                 MethodId = methodId,
-                Strategy = nameof(ServiceGetOne),
+                MethodMockStrategy = nameof(ServiceGetOne),
                 Context = Option.Some<dynamic>(context)
             };
             Check.That(mockStrategy).IsEqualTo(expectedMockStrategy);
         }
 
         [Fact]
-        public void Should_build_mockMethodStrategy()
+        public void Should_build_callOnceMockMethodStrategy()
         {
             //Arrange
             var methodId = "id";
 
             //Act
             var mockStrategy = MockStrategyBuilder.ForMethod(methodId)
-                .WithStrategy(nameof(ServiceGetOne));
+                .OnceWithMethodMockStrategy(nameof(ServiceGetOne));
 
             //Assert
             var expectedMockStrategy = new MethodToMockWithMethodStrategy()
             {
                 MethodId = methodId,
-                Strategy = nameof(ServiceGetOne)
+                MethodMockStrategy = nameof(ServiceGetOne)
+            };
+            Check.That(mockStrategy).IsEqualTo(expectedMockStrategy);
+        }
+
+        [Fact]
+        public void Should_build_callAlwaysMockMethodStrategy()
+        {
+            //Arrange
+            var methodId = "id";
+
+            //Act
+            var mockStrategy = MockStrategyBuilder.ForMethod(methodId)
+                .AlwaysWithMethodMockStrategy(nameof(ServiceGetOne));
+
+            //Assert
+            var expectedMockStrategy = new MethodToMockWithMethodStrategy()
+            {
+                MethodId = methodId,
+                MethodMockStrategy = nameof(ServiceGetOne),
+                IsAlwaysApplied = true
             };
             Check.That(mockStrategy).IsEqualTo(expectedMockStrategy);
         }
@@ -103,7 +123,7 @@ namespace Mock.Define.Strategy.Tests
 
             //Act
             var mockStrategy = MockStrategyBuilder.ForMethod(methodId)
-                .WithObject(mockedObject)
+                .OnceWithObject(mockedObject)
                 .WithContext(context);
 
             //Assert
@@ -117,7 +137,7 @@ namespace Mock.Define.Strategy.Tests
         }
 
         [Fact]
-        public void Should_build_mockObjectStrategy()
+        public void Should_build_callAlwaysMockObjectStrategy()
         {
             //Arrange
             var methodId = "id";
@@ -125,7 +145,28 @@ namespace Mock.Define.Strategy.Tests
 
             //Act
             var mockStrategy = MockStrategyBuilder.ForMethod(methodId)
-                .WithObject(mockedObject);
+                .AlwaysWithObject(mockedObject);
+
+            //Assert
+            var expectedMockStrategy = new MethodToMockWithObjectStrategy<int>
+            {
+                MethodId = methodId,
+                MockedObject = mockedObject,
+                IsAlwaysApplied = true
+            };
+            Check.That(mockStrategy).IsEqualTo(expectedMockStrategy);
+        }
+
+        [Fact]
+        public void Should_build_callOnceMockObjectStrategy()
+        {
+            //Arrange
+            var methodId = "id";
+            var mockedObject = 1;
+
+            //Act
+            var mockStrategy = MockStrategyBuilder.ForMethod(methodId)
+                .OnceWithObject(mockedObject);
 
             //Assert
             var expectedMockStrategy = new MethodToMockWithObjectStrategy<int>
@@ -134,19 +175,6 @@ namespace Mock.Define.Strategy.Tests
                 MockedObject = mockedObject
             };
             Check.That(mockStrategy).IsEqualTo(expectedMockStrategy);
-        }
-
-        [Fact]
-        public void Should_build_with_an_alwaysMockWith_strategy()
-        {
-            //Arrange
-            var mockStrategy = new MockStrategy { IsAlwaysApplied = false };
-
-            //Act
-            mockStrategy = mockStrategy.AlwaysApply();
-
-            //Assert
-            Check.That(mockStrategy.IsAlwaysApplied).IsEqualTo(true);
         }
     }
 }

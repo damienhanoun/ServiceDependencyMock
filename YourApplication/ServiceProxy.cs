@@ -73,12 +73,12 @@ namespace YourApplication
         {
             try
             {
-                var serviceSubstitute = Container.Resolve<ServiceGetTemplate>(methodStrategy.Strategy);
+                var serviceSubstitute = Container.Resolve<ServiceGetTemplate>(methodStrategy.MethodMockStrategy);
                 return serviceSubstitute.Get();
             }
             catch (ResolutionFailedException)
             {
-                throw new Exception($"Method strategy '{methodStrategy.Strategy}' is not defined");
+                throw new Exception($"Method strategy '{methodStrategy.MethodMockStrategy}' is not defined");
             }
         }
     }

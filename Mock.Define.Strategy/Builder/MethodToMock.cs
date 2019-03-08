@@ -6,16 +6,16 @@ namespace Mock.Define.Strategy.Builder
     {
         public string MethodId;
 
-        public MethodToMockWithMethodStrategy WithStrategy(string strategy)
+        public MethodToMockWithMethodStrategy OnceWithMethodMockStrategy(string strategy)
         {
             return new MethodToMockWithMethodStrategy
             {
                 MethodId = MethodId,
-                Strategy = strategy
+                MethodMockStrategy = strategy
             };
         }
 
-        public MethodToMockWithObjectStrategy<T> WithObject<T>(T mockedObject)
+        public MethodToMockWithObjectStrategy<T> OnceWithObject<T>(T mockedObject)
         {
             return new MethodToMockWithObjectStrategy<T>
             {
@@ -24,11 +24,31 @@ namespace Mock.Define.Strategy.Builder
             };
         }
 
-        public ForceNoMockStrategy WithoutMock()
+        public ForceNoMockStrategy OnceWithoutMock()
         {
             return new ForceNoMockStrategy
             {
                 MethodId = MethodId
+            };
+        }
+
+        public MethodToMockWithMethodStrategy AlwaysWithMethodMockStrategy(string methodMockStrategy)
+        {
+            return new MethodToMockWithMethodStrategy
+            {
+                MethodId = MethodId,
+                MethodMockStrategy = methodMockStrategy,
+                IsAlwaysApplied = true
+            };
+        }
+
+        public MethodToMockWithObjectStrategy<T> AlwaysWithObject<T>(T mockedObject)
+        {
+            return new MethodToMockWithObjectStrategy<T>
+            {
+                MethodId = MethodId,
+                MockedObject = mockedObject,
+                IsAlwaysApplied = true
             };
         }
     }
