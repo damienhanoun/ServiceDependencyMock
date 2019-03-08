@@ -1,4 +1,5 @@
-﻿using DatabasesObjects.CSharp;
+﻿using System.Linq;
+using DatabasesObjects.CSharp;
 using Mock.Strategies;
 using MockStrategiesCSharp;
 
@@ -37,6 +38,13 @@ namespace Mock.Define.Strategy.MockStrategyRepositoryImplementations
                 SerializedStrategy = Serializer.Serialise(mockObjectStrategy)
             };
             MockStrategies.MockStrategy.Add(row);
+        }
+
+        public void RemoveStrategy(MockStrategy mockStrategy)
+        {
+            var row = MockStrategies.MockStrategy
+                .First(m => m.UniqueId == mockStrategy.Id);
+            MockStrategies.MockStrategy.Remove(row);
         }
     }
 }

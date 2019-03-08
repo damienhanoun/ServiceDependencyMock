@@ -1,7 +1,9 @@
-﻿using DatabasesObjects.SqlServer;
+﻿using System.Linq;
+using DatabasesObjects.SqlServer;
 using Mock.Define.Strategy.Helpers;
 using Mock.Strategies;
 using System.Threading;
+using MockStrategy = Mock.Strategies.MockStrategy;
 
 namespace Mock.Define.Strategy.MockStrategyRepositoryImplementations
 {
@@ -46,6 +48,16 @@ namespace Mock.Define.Strategy.MockStrategyRepositoryImplementations
         private void PreventBadCreationDateOrderingWhenThisOneEqualsToPreviousOne()
         {
             Thread.Sleep(30);
+        }
+
+        public void RemoveStrategy(MockStrategy mockStrategy)
+        {
+            using (var context = new MockStrategiesContext())
+            {
+                var dbMockStrategy = context.MockStrategy.First(m => m.Id == mockStrategy.Id);
+                context.MockStrategy.Remove(dbMockStrategy);
+                context.SaveChanges();
+            }
         }
     }
 }

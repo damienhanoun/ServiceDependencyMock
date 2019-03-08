@@ -7,5 +7,6 @@ namespace Mock.Define.Strategy
         void MockMethod(MethodToMockWithMethodStrategy mockMethodStrategy);
         void MockObject<T>(MethodToMockWithObjectStrategy<T> mockObjectStrategy);
         void DontMock(ForceNoMockStrategy noMockStrategy);
+        void RemoveStrategy(MockStrategy mockStrategy);
     }
 }

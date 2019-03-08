@@ -247,7 +247,7 @@ namespace Examples
         }
 
         [Fact]
-        public void Should_always_mock_with_strategy()
+        public void Should_alwaysMockWith_strategy()
         {
             //Arrange
             var mockStrategyAlwaysApplied = MockStrategyBuilder.ForMethod(GetId)
@@ -262,6 +262,27 @@ namespace Examples
             //Assert
             Check.That(result).IsEqualTo(1);
             Check.That(result2).IsEqualTo(1);
+        }
+
+        [Fact]
+        public void Should_get_real_implementation_result_When_alwaysMockWith_strategy_si_deleted()
+        {
+            //Arrange
+            var mockStrategyAlwaysApplied = MockStrategyBuilder.ForMethod(GetId)
+                .AlwaysWithObject(1);
+
+            this.mockStrategyRepository.MockObject(mockStrategyAlwaysApplied);
+
+            this.service.Get().Returns(0);
+            
+            //Act
+            var resultMocked = this.serviceProxy.Get();
+            this.mockStrategyRepository.RemoveStrategy(mockStrategyAlwaysApplied);
+            var resultWithoutMock = this.serviceProxy.Get();
+
+            //Assert
+            Check.That(resultMocked).IsEqualTo(1);
+            Check.That(resultWithoutMock).IsEqualTo(0);
         }
     }
 }
