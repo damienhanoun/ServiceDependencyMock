@@ -32,7 +32,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mock.Define.Strategy.Tests"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YourApplication", "YourApplication\YourApplication.csproj", "{8850629B-5FB3-485C-B3BB-7FDF7B344E6A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabasesObjects", "DatabasesObjects\DatabasesObjects.csproj", "{23F5E167-AA16-4C8D-9C83-C4D3F68BB8F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabasesObjects", "DatabasesObjects\DatabasesObjects.csproj", "{23F5E167-AA16-4C8D-9C83-C4D3F68BB8F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

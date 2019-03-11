@@ -1,10 +1,11 @@
 ﻿using DatabasesObjects.CSharp;
+using DatabasesObjects.SqlServer;
 using ExternalDependency;
+using Microsoft.EntityFrameworkCore;
 using Mock.Apply.Strategy;
 using Mock.Apply.Strategy.MockStrategyQueryImplementations;
 using Mock.Define.Strategy;
 using Mock.Define.Strategy.Builder;
-using Mock.Define.Strategy.Helpers;
 using Mock.Define.Strategy.MockStrategyRepositoryImplementations;
 using MockStrategiesCSharp;
 using NFluent;
@@ -14,6 +15,7 @@ using System.Collections.Generic;
 using Xunit;
 using YourApplication;
 using YourApplication.ServiceMethodsStrategies.Get;
+using static Examples.ConfigurationReader;
 using static YourApplication.ServiceMethodsStrategies.ServiceMethodsIdentifiers;
 
 namespace Examples
@@ -25,18 +27,27 @@ namespace Examples
         private readonly MockStrategyRepository mockStrategyRepository;
         private readonly MockStrategyQuery mockStrategyQuery;
         private readonly Service service;
+        private static readonly DbContextOptionsBuilder<MockStrategiesContext> optionsBuilder;
+        private static readonly string connectionString;
+
+        static ServiceProxyTest()
+        {
+            connectionString = Get("ConnectionString");
+            optionsBuilder = new DbContextOptionsBuilder<MockStrategiesContext>();
+            optionsBuilder.UseSqlServer(connectionString);
+        }
 
         public ServiceProxyTest()
         {
             this.mockStrategyRepository = new MockStrategyRepositoryCSharp();
             this.mockStrategyQuery = new MockStrategyQueryCSharp();
-            //this.mockStrategyRepository = new MockStrategyRepositorySqlServer();
-            //this.mockStrategyQuery = new MockStrategyQuerySqlServer();
+            //this.mockStrategyRepository = new MockStrategyRepositorySqlServer(connectionString);
+            //this.mockStrategyQuery = new MockStrategyQuerySqlServer(connectionString);
 
             this.service = Substitute.For<Service>();
             this.serviceProxy = new ServiceProxy(this.mockStrategyQuery, this.service);
 
-            //using (var context = new MockStrategiesContext())
+            //using (var context = new MockStrategiesContext(optionsBuilder.Options))
             //    context.Database.ExecuteSqlCommand("TRUNCATE TABLE MockStrategy");
         }
 
@@ -274,7 +285,7 @@ namespace Examples
             this.mockStrategyRepository.MockObject(mockStrategyAlwaysApplied);
 
             this.service.Get().Returns(0);
-            
+
             //Act
             var resultMocked = this.serviceProxy.Get();
             this.mockStrategyRepository.RemoveStrategy(mockStrategyAlwaysApplied);

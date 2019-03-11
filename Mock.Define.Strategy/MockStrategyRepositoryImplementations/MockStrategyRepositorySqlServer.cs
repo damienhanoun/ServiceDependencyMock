@@ -1,7 +1,8 @@
-﻿using System.Linq;
-using DatabasesObjects.SqlServer;
+﻿using DatabasesObjects.SqlServer;
+using Microsoft.EntityFrameworkCore;
 using Mock.Define.Strategy.Helpers;
 using Mock.Strategies;
+using System.Linq;
 using System.Threading;
 using MockStrategy = Mock.Strategies.MockStrategy;
 
@@ -9,9 +10,17 @@ namespace Mock.Define.Strategy.MockStrategyRepositoryImplementations
 {
     public class MockStrategyRepositorySqlServer : MockStrategyRepository
     {
+        private readonly DbContextOptionsBuilder<MockStrategiesContext> optionsBuilder;
+
+        public MockStrategyRepositorySqlServer(string connectionString)
+        {
+            this.optionsBuilder = new DbContextOptionsBuilder<MockStrategiesContext>();
+            this.optionsBuilder.UseSqlServer(connectionString);
+        }
+
         public void DontMock(ForceNoMockStrategy noMockStrategy)
         {
-            using (var context = new MockStrategiesContext())
+            using (var context = new MockStrategiesContext(this.optionsBuilder.Options))
             {
                 this.PreventBadCreationDateOrderingWhenThisOneEqualsToPreviousOne();
 
@@ -23,7 +32,7 @@ namespace Mock.Define.Strategy.MockStrategyRepositoryImplementations
 
         public void MockMethod(MethodToMockWithMethodStrategy mockMethodStrategy)
         {
-            using (var context = new MockStrategiesContext())
+            using (var context = new MockStrategiesContext(this.optionsBuilder.Options))
             {
                 this.PreventBadCreationDateOrderingWhenThisOneEqualsToPreviousOne();
 
@@ -35,7 +44,7 @@ namespace Mock.Define.Strategy.MockStrategyRepositoryImplementations
 
         public void MockObject<T>(MethodToMockWithObjectStrategy<T> mockObjectStrategy)
         {
-            using (var context = new MockStrategiesContext())
+            using (var context = new MockStrategiesContext(this.optionsBuilder.Options))
             {
                 this.PreventBadCreationDateOrderingWhenThisOneEqualsToPreviousOne();
 
@@ -52,7 +61,7 @@ namespace Mock.Define.Strategy.MockStrategyRepositoryImplementations
 
         public void RemoveStrategy(MockStrategy mockStrategy)
         {
-            using (var context = new MockStrategiesContext())
+            using (var context = new MockStrategiesContext(this.optionsBuilder.Options))
             {
                 var dbMockStrategy = context.MockStrategy.First(m => m.Id == mockStrategy.Id);
                 context.MockStrategy.Remove(dbMockStrategy);

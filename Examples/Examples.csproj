@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
     <PackageReference Include="NFluent" Version="2.4.0" />
     <PackageReference Include="NSubstitute" Version="4.0.0" />
@@ -22,6 +23,12 @@
     <ProjectReference Include="..\Mock.Apply.Strategy\Mock.Apply.Strategy.csproj" />
     <ProjectReference Include="..\Mock.Define.Strategy\Mock.Define.Strategy.csproj" />
     <ProjectReference Include="..\YourApplication\YourApplication.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appSettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

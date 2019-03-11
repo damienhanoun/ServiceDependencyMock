@@ -4,9 +4,11 @@ namespace DatabasesObjects.SqlServer
 {
     public class MockStrategiesContext : DbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+
+        public MockStrategiesContext(DbContextOptions options)
+            : base(options)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=MockStrategies;Trusted_Connection=True;");
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
