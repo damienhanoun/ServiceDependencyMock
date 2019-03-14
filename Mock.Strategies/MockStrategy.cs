@@ -1,13 +1,16 @@
 ﻿using Optional;
 using Optional.Unsafe;
 using System;
+using System.Runtime.CompilerServices;
+[assembly: InternalsVisibleTo("Mock.Apply.Strategy")]
+[assembly: InternalsVisibleTo("Mock.Define.Strategy")]
 
 namespace Mock.Strategies
 {
     [Serializable]
     public class MockStrategy
     {
-        public string Id = Guid.NewGuid().ToString();
+        internal string Id = Guid.NewGuid().ToString();
         public string MethodId;
         public bool IsAlwaysApplied;
         public Option<dynamic> Context;
