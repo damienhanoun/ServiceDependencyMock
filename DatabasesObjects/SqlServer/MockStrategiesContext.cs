@@ -6,10 +6,7 @@ namespace DatabasesObjects.SqlServer
     {
 
         public MockStrategiesContext(DbContextOptions options)
-            : base(options)
-        {
-
-        }
+            : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
