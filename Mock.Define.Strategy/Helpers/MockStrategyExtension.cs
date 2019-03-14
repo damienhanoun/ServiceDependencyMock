@@ -1,13 +1,13 @@
-﻿using Mock.Strategies;
+﻿using Mock.Data.Tranfer.Objects.Strategies;
 using System;
 
 namespace Mock.Define.Strategy.Helpers
 {
     public static class MockStrategyExtension
     {
-        public static DatabasesObjects.SqlServer.MockStrategy ToSqlServerFormat(this MockStrategy mockStrategy)
+        public static Data.Tranfer.Objects.DatabaseEntities.SqlServer.MockStrategy ToSqlServerFormat(this MockStrategy mockStrategy)
         {
-            return new DatabasesObjects.SqlServer.MockStrategy
+            return new Data.Tranfer.Objects.DatabaseEntities.SqlServer.MockStrategy
             {
                 Id = mockStrategy.Id,
                 MethodId = mockStrategy.MethodId,

@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
     <metadata>
         <!-- The identifier that must be unique within the hosting gallery -->
-        <id>Mock.Dependency.With.Proxy.Apply.Strategy</id>
+        <id>Mock.Dependency.With.Proxy.Data.Tranfer.Objects</id>
 
         <!-- The package version number that is used when resolving dependencies -->
         <version>1.0.2</version>
@@ -39,7 +39,7 @@
             The description can be used in package manager UI. Note that the
             nuget.org gallery uses information you add in the portal. 
         -->
-        <description>Allow the proxy to mock the way it is define with Mock.Dependency.With.Proxy.Define.Strategy package</description>
+        <description>Data defined by Mock.Dependency.With.Proxy.Define.Strategy package and read by Mock.Dependency.With.Proxy.Apply.Strategy package</description>
 
         <!-- Copyright information -->
         <copyright></copyright>
@@ -49,7 +49,6 @@
 
         <!-- Dependencies are automatically installed when the package is installed -->
         <dependencies>
-          <dependency id="Mock.Dependency.With.Proxy.Data.Tranfer.Objects" version="1.0.2" />
         </dependencies>
     </metadata>
 </package>

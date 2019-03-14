@@ -15,8 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Mock.Data.Transfer.Objects\Mock.Data.Transfer.Objects.csproj" />
     <ProjectReference Include="..\Mock.Define.Strategy\Mock.Define.Strategy.csproj" />
-    <ProjectReference Include="..\YourApplication\YourApplication.csproj" />
   </ItemGroup>
 
 </Project>

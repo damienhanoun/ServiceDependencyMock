@@ -1,5 +1,5 @@
-﻿using DatabasesObjects.CSharp;
-using Mock.Strategies;
+﻿using Mock.Data.Tranfer.Objects.DatabaseEntities.CSharp;
+using Mock.Data.Tranfer.Objects.Strategies;
 using System.Collections.Generic;
 
 namespace Mock.Apply.Strategy.Helpers
@@ -19,7 +19,7 @@ namespace Mock.Apply.Strategy.Helpers
             return strategies;
         }
 
-        public static List<MockStrategy> DeserializeMockStrategies(this IEnumerable<DatabasesObjects.SqlServer.MockStrategy> rows)
+        public static List<MockStrategy> DeserializeMockStrategies(this IEnumerable<Mock.Data.Tranfer.Objects.DatabaseEntities.SqlServer.MockStrategy> rows)
         {
             var strategies = new List<MockStrategy>();
 

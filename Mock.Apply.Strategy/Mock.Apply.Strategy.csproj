@@ -10,7 +10,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Mock.Strategies\Mock.Strategies.csproj" />
     <ProjectReference Include="..\MockStrategiesCSharp\MockStrategiesCSharp.csproj" />
   </ItemGroup>
 

@@ -1,5 +1,5 @@
 ﻿using Mock.Apply.Strategy.Helpers;
-using Mock.Strategies;
+using Mock.Data.Tranfer.Objects.Strategies;
 using MockStrategiesCSharp;
 using System;
 using System.Linq;

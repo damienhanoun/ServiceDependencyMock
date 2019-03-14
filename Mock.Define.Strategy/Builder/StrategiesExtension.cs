@@ -1,4 +1,4 @@
-﻿using Mock.Strategies;
+﻿using Mock.Data.Tranfer.Objects.Strategies;
 using Optional;
 
 namespace Mock.Define.Strategy.Builder

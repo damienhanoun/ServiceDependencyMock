@@ -1,9 +1,9 @@
-﻿using DatabasesObjects.CSharp;
-using DatabasesObjects.SqlServer;
-using ExternalDependency;
+﻿using ExternalDependency;
 using Microsoft.EntityFrameworkCore;
 using Mock.Apply.Strategy;
 using Mock.Apply.Strategy.MockStrategyQueryImplementations;
+using Mock.Data.Tranfer.Objects.DatabaseEntities.CSharp;
+using Mock.Data.Tranfer.Objects.DatabaseEntities.SqlServer;
 using Mock.Define.Strategy;
 using Mock.Define.Strategy.Builder;
 using Mock.Define.Strategy.MockStrategyRepositoryImplementations;

@@ -1,10 +1,9 @@
-﻿using Mock.Define.Strategy.Builder;
-using Mock.Define.Strategy.Helpers;
-using Mock.Strategies;
+﻿using Mock.Data.Tranfer.Objects.Strategies;
+using Mock.Define.Strategy.Builder;
+using Mock.Define.Strategy.Tests.Helpers;
 using NFluent;
 using Optional;
 using Xunit;
-using YourApplication.ServiceMethodsStrategies.Get;
 
 namespace Mock.Define.Strategy.Tests
 {
@@ -15,7 +14,7 @@ namespace Mock.Define.Strategy.Tests
         {
             //Arrange
             var methodId = "id";
-            var context = new GetMockContext { };
+            var context = new MockContext { };
 
             //Act
             var mockStrategy = MockStrategyBuilder
@@ -56,19 +55,19 @@ namespace Mock.Define.Strategy.Tests
         {
             //Arrange
             var methodId = "id";
-            var context = new GetMockContext { };
+            var context = new MockContext { };
 
             //Act
             var mockStrategy = MockStrategyBuilder
                 .ForMethod(methodId)
-                .OnceWithMethodMockStrategy(nameof(ServiceGetOne))
+                .OnceWithMethodMockStrategy(nameof(MockMethodStrategy))
                 .WithContext(context);
 
             //Assert
             var expectedMockStrategy = new MethodToMockWithMethodStrategy()
             {
                 MethodId = methodId,
-                MethodMockStrategy = nameof(ServiceGetOne),
+                MethodMockStrategy = nameof(MockMethodStrategy),
                 Context = Option.Some<dynamic>(context)
             };
             Check.That(mockStrategy).IsEqualTo(expectedMockStrategy);
@@ -82,13 +81,13 @@ namespace Mock.Define.Strategy.Tests
 
             //Act
             var mockStrategy = MockStrategyBuilder.ForMethod(methodId)
-                .OnceWithMethodMockStrategy(nameof(ServiceGetOne));
+                .OnceWithMethodMockStrategy(nameof(MockMethodStrategy));
 
             //Assert
             var expectedMockStrategy = new MethodToMockWithMethodStrategy()
             {
                 MethodId = methodId,
-                MethodMockStrategy = nameof(ServiceGetOne)
+                MethodMockStrategy = nameof(MockMethodStrategy)
             };
             Check.That(mockStrategy).IsEqualTo(expectedMockStrategy);
         }
@@ -101,13 +100,13 @@ namespace Mock.Define.Strategy.Tests
 
             //Act
             var mockStrategy = MockStrategyBuilder.ForMethod(methodId)
-                .AlwaysWithMethodMockStrategy(nameof(ServiceGetOne));
+                .AlwaysWithMethodMockStrategy(nameof(MockMethodStrategy));
 
             //Assert
             var expectedMockStrategy = new MethodToMockWithMethodStrategy()
             {
                 MethodId = methodId,
-                MethodMockStrategy = nameof(ServiceGetOne),
+                MethodMockStrategy = nameof(MockMethodStrategy),
                 IsAlwaysApplied = true
             };
             Check.That(mockStrategy).IsEqualTo(expectedMockStrategy);
@@ -119,7 +118,7 @@ namespace Mock.Define.Strategy.Tests
             //Arrange
             var methodId = "id";
             var mockedObject = 1;
-            var context = new GetMockContext { };
+            var context = new MockContext { };
 
             //Act
             var mockStrategy = MockStrategyBuilder.ForMethod(methodId)

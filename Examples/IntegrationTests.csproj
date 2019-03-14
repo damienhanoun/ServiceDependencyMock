@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.3" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
     <PackageReference Include="NFluent" Version="2.4.0" />
@@ -22,7 +23,12 @@
     <ProjectReference Include="..\ExternalDependency\ExternalDependency.csproj" />
     <ProjectReference Include="..\Mock.Apply.Strategy\Mock.Apply.Strategy.csproj" />
     <ProjectReference Include="..\Mock.Define.Strategy\Mock.Define.Strategy.csproj" />
-    <ProjectReference Include="..\YourApplication\YourApplication.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.EntityFrameworkCore">
+      <HintPath>..\..\..\..\.nuget\packages\microsoft.entityframeworkcore\2.2.3\lib\netstandard2.0\Microsoft.EntityFrameworkCore.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>

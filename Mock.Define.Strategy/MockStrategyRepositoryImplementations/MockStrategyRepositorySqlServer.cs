@@ -1,10 +1,10 @@
-﻿using DatabasesObjects.SqlServer;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Mock.Data.Tranfer.Objects.DatabaseEntities.SqlServer;
+using Mock.Data.Tranfer.Objects.Strategies;
 using Mock.Define.Strategy.Helpers;
-using Mock.Strategies;
 using System.Linq;
 using System.Threading;
-using MockStrategy = Mock.Strategies.MockStrategy;
+using MockStrategy = Mock.Data.Tranfer.Objects.Strategies.MockStrategy;
 
 namespace Mock.Define.Strategy.MockStrategyRepositoryImplementations
 {

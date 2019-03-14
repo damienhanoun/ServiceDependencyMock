@@ -1,6 +1,5 @@
-﻿using ExternalDependency;
+﻿using YourApplication.ServiceMethodsStrategies.Get;
 using Unity;
-using YourApplication.ServiceMethodsStrategies.Get;
 
 namespace YourApplication
 {
@@ -15,10 +14,7 @@ namespace YourApplication
                 if (container == null)
                 {
                     container = new UnityContainer();
-
                     container.RegisterType<ServiceGetTemplate, ServiceGetOne>(nameof(ServiceGetOne));
-
-                    container.RegisterType<ExternalService, ExternalServiceProxy>();
                 }
 
                 return container;

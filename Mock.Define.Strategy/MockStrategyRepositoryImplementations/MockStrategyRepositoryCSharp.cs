@@ -1,7 +1,7 @@
-﻿using System.Linq;
-using DatabasesObjects.CSharp;
-using Mock.Strategies;
+﻿using Mock.Data.Tranfer.Objects.DatabaseEntities.CSharp;
+using Mock.Data.Tranfer.Objects.Strategies;
 using MockStrategiesCSharp;
+using System.Linq;
 
 namespace Mock.Define.Strategy.MockStrategyRepositoryImplementations
 {
