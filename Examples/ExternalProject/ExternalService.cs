@@ -1,6 +1,6 @@
 ﻿namespace ExternalDependency
 {
-    public interface Service
+    public interface ExternalService
     {
         int Get();
     }

@@ -1,12 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Mock.Dependency.With.Proxy.Apply.Strategy" Version="1.0.2" />
-    <PackageReference Include="Mock.Dependency.With.Proxy.Data.Tranfer.Objects" Version="1.0.2" />
+    <PackageReference Include="Mock.Dependency.With.Proxy.Apply.Strategy" Version="1.0.4" />
+    <PackageReference Include="Mock.Dependency.With.Proxy.Data.Transfer.Objects" Version="1.0.4" />
     <PackageReference Include="Optional" Version="4.0.0" />
     <PackageReference Include="Unity" Version="5.9.5" />
   </ItemGroup>

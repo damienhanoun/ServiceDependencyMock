@@ -1,6 +1,6 @@
 ﻿namespace ExternalDependency
 {
-    public class ServiceImpl : Service
+    public class ExternalServiceImpl : ExternalService
     {
         public int Get()
         {

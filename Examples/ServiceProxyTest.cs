@@ -26,7 +26,7 @@ namespace Examples
 
         private readonly MockStrategyRepository mockStrategyRepository;
         private readonly MockStrategyQuery mockStrategyQuery;
-        private readonly Service service;
+        private readonly ExternalService service;
         private static readonly DbContextOptionsBuilder<MockStrategiesContext> optionsBuilder;
         private static readonly string connectionString;
 
@@ -44,7 +44,7 @@ namespace Examples
             //this.mockStrategyRepository = new MockStrategyRepositorySqlServer(connectionString);
             //this.mockStrategyQuery = new MockStrategyQuerySqlServer(connectionString);
 
-            this.service = Substitute.For<Service>();
+            this.service = Substitute.For<ExternalService>();
             this.serviceProxy = new ServiceProxy(this.mockStrategyQuery, this.service);
 
             //using (var context = new MockStrategiesContext(optionsBuilder.Options))

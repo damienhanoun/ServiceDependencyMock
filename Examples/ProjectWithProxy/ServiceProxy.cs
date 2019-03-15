@@ -9,12 +9,12 @@ using static YourApplication.ServiceMethodsStrategies.ServiceMethodsIdentifiers;
 
 namespace YourApplication
 {
-    public class ServiceProxy : Service
+    public class ServiceProxy : ExternalService
     {
-        private readonly Service service;
+        private readonly ExternalService service;
         private readonly MockStrategyQuery mockStrategyQuery;
 
-        public ServiceProxy(MockStrategyQuery mockStrategyQuery, Service service)
+        public ServiceProxy(MockStrategyQuery mockStrategyQuery, ExternalService service)
         {
             this.mockStrategyQuery = mockStrategyQuery;
             this.service = service;
