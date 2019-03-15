@@ -1,5 +1,4 @@
 ﻿using Mock.Dependency.With.Proxy.Data.Transfer.Objects.Strategies;
-using Mock.Dependency.With.Proxy.Define.Strategy.Tests.Helpers;
 using NFluent;
 using Optional;
 using Xunit;
