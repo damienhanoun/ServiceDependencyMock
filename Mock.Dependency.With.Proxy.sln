@@ -26,7 +26,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Define.Strategy", "Mock.Def
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Apply.Strategy", "Mock.Apply.Strategy\Apply.Strategy.csproj", "{27BB28CF-9905-4C0F-AF56-D15600E4AB15}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mock.Define.Strategy.Tests", "Mock.Define.Strategy.Tests\Mock.Define.Strategy.Tests.csproj", "{A600CEA3-957F-423B-BF32-4418B4B3CAE1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Define.Strategy.Tests", "Mock.Define.Strategy.Tests\Define.Strategy.Tests.csproj", "{A600CEA3-957F-423B-BF32-4418B4B3CAE1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YourApplication", "YourApplication\YourApplication.csproj", "{8850629B-5FB3-485C-B3BB-7FDF7B344E6A}"
 EndProject
