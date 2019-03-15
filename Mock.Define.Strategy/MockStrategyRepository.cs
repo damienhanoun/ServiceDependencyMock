@@ -1,6 +1,6 @@
-﻿using Mock.Data.Tranfer.Objects.Strategies;
+﻿using Mock.Dependency.With.Proxy.Data.Transfer.Objects.Strategies;
 
-namespace Mock.Define.Strategy
+namespace Mock.Dependency.With.Proxy.Define.Strategy
 {
     public interface MockStrategyRepository
     {

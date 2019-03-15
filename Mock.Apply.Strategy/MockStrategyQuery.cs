@@ -1,7 +1,7 @@
-﻿using Mock.Data.Tranfer.Objects.Strategies;
+﻿using Mock.Dependency.With.Proxy.Data.Transfer.Objects.Strategies;
 using System;
 
-namespace Mock.Apply.Strategy
+namespace Mock.Dependency.With.Proxy.Apply.Strategy
 {
     public interface MockStrategyQuery
     {

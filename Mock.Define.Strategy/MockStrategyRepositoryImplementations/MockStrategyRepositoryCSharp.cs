@@ -1,9 +1,9 @@
-﻿using Mock.Data.Tranfer.Objects.DatabaseEntities.CSharp;
-using Mock.Data.Tranfer.Objects.Strategies;
+﻿using Mock.Dependency.With.Proxy.Data.Transfer.Objects.DatabaseEntities.CSharp;
+using Mock.Dependency.With.Proxy.Data.Transfer.Objects.Strategies;
 using MockStrategiesCSharp;
 using System.Linq;
 
-namespace Mock.Define.Strategy.MockStrategyRepositoryImplementations
+namespace Mock.Dependency.With.Proxy.Define.Strategy
 {
     public class MockStrategyRepositoryCSharp : MockStrategyRepository
     {

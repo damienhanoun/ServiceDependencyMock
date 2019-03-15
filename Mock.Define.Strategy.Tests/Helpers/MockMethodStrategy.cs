@@ -1,4 +1,4 @@
-﻿namespace Mock.Define.Strategy.Tests.Helpers
+﻿namespace Mock.Dependency.With.Proxy.Define.Strategy.Tests.Helpers
 {
     class MockMethodStrategy
     {

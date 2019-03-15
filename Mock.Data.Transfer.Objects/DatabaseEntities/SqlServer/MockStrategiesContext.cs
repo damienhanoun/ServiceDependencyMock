@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Mock.Data.Tranfer.Objects.DatabaseEntities.SqlServer
+namespace Mock.Dependency.With.Proxy.Data.Transfer.Objects.DatabaseEntities.SqlServer
 {
     public class MockStrategiesContext : DbContext
     {

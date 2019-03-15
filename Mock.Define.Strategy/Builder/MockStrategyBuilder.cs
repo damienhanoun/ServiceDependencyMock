@@ -1,4 +1,4 @@
-﻿namespace Mock.Define.Strategy.Builder
+﻿namespace Mock.Dependency.With.Proxy.Define.Strategy
 {
     public class MockStrategyBuilder
     {

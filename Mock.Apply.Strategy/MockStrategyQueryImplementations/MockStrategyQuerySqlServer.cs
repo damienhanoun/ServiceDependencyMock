@@ -1,11 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Mock.Apply.Strategy.Helpers;
-using Mock.Data.Tranfer.Objects.DatabaseEntities.SqlServer;
+using Mock.Dependency.With.Proxy.Data.Transfer.Objects.DatabaseEntities.SqlServer;
 using System;
 using System.Linq;
-using MockStrategy = Mock.Data.Tranfer.Objects.Strategies.MockStrategy;
+using MockStrategy = Mock.Dependency.With.Proxy.Data.Transfer.Objects.Strategies.MockStrategy;
 
-namespace Mock.Apply.Strategy.MockStrategyQueryImplementations
+namespace Mock.Dependency.With.Proxy.Apply.Strategy
 {
     public class MockStrategyQuerySqlServer : MockStrategyQuery
     {

@@ -20,9 +20,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ExternalDependency\ExternalDependency.csproj" />
-    <ProjectReference Include="..\Mock.Apply.Strategy\Mock.Apply.Strategy.csproj" />
-    <ProjectReference Include="..\Mock.Define.Strategy\Mock.Define.Strategy.csproj" />
+    <ProjectReference Include="..\Mock.Apply.Strategy\Apply.Strategy.csproj" />
+    <ProjectReference Include="..\Mock.Define.Strategy\Define.Strategy.csproj" />
   </ItemGroup>
 
   <ItemGroup>

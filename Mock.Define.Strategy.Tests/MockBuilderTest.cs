@@ -1,11 +1,10 @@
-﻿using Mock.Data.Tranfer.Objects.Strategies;
-using Mock.Define.Strategy.Builder;
-using Mock.Define.Strategy.Tests.Helpers;
+﻿using Mock.Dependency.With.Proxy.Data.Transfer.Objects.Strategies;
+using Mock.Dependency.With.Proxy.Define.Strategy.Tests.Helpers;
 using NFluent;
 using Optional;
 using Xunit;
 
-namespace Mock.Define.Strategy.Tests
+namespace Mock.Dependency.With.Proxy.Define.Strategy.Tests
 {
     public class MockBuilderTest
     {

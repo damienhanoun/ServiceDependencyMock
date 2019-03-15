@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Mock.Data.Transfer.Objects\Mock.Data.Transfer.Objects.csproj" />
+    <ProjectReference Include="..\Mock.Data.Transfer.Objects\Data.Transfer.Objects.csproj" />
   </ItemGroup>
 
 </Project>

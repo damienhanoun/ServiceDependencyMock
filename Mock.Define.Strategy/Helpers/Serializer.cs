@@ -1,9 +1,9 @@
 ﻿using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace Mock.Define.Strategy
+namespace Mock.Dependency.With.Proxy.Define.Strategy
 {
-    public class Serializer
+    internal class Serializer
     {
         public static byte[] Serialise<T>(T objectToSerialize)
         {

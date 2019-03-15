@@ -2,10 +2,10 @@
 using Optional.Unsafe;
 using System;
 using System.Runtime.CompilerServices;
-[assembly: InternalsVisibleTo("Mock.Apply.Strategy")]
-[assembly: InternalsVisibleTo("Mock.Define.Strategy")]
+[assembly: InternalsVisibleTo("Apply.Strategy")]
+[assembly: InternalsVisibleTo("Define.Strategy")]
 
-namespace Mock.Data.Tranfer.Objects.Strategies
+namespace Mock.Dependency.With.Proxy.Data.Transfer.Objects.Strategies
 {
     [Serializable]
     public class MockStrategy

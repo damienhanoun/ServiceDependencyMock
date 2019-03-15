@@ -1,4 +1,4 @@
-﻿using Mock.Data.Tranfer.Objects.DatabaseEntities.CSharp;
+﻿using Mock.Dependency.With.Proxy.Data.Transfer.Objects.DatabaseEntities.CSharp;
 using System.Collections.Generic;
 
 namespace MockStrategiesCSharp

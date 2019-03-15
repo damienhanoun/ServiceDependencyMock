@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace YourApplication.ServiceMethodsStrategies.Get
+namespace IntegrationTests.ProjectWithProxy.ServiceMethodsStrategies.Get
 {
     [Serializable]
     public class GetMockContext

@@ -1,4 +1,4 @@
-﻿namespace ExternalDependency
+﻿namespace IntegrationTests.ExternalProject
 {
     public class ExternalServiceImpl : ExternalService
     {

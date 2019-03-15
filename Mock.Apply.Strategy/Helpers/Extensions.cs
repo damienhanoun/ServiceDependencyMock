@@ -1,10 +1,10 @@
-﻿using Mock.Data.Tranfer.Objects.DatabaseEntities.CSharp;
-using Mock.Data.Tranfer.Objects.Strategies;
+﻿using Mock.Dependency.With.Proxy.Data.Transfer.Objects.DatabaseEntities.CSharp;
+using Mock.Dependency.With.Proxy.Data.Transfer.Objects.Strategies;
 using System.Collections.Generic;
 
-namespace Mock.Apply.Strategy.Helpers
+namespace Mock.Dependency.With.Proxy.Apply.Strategy
 {
-    public static class Extensions
+    internal static class Extensions
     {
         public static List<MockStrategy> DeserializeMockStrategies(this IEnumerable<MockStrategyEntity> rows)
         {
@@ -19,7 +19,7 @@ namespace Mock.Apply.Strategy.Helpers
             return strategies;
         }
 
-        public static List<MockStrategy> DeserializeMockStrategies(this IEnumerable<Mock.Data.Tranfer.Objects.DatabaseEntities.SqlServer.MockStrategy> rows)
+        public static List<MockStrategy> DeserializeMockStrategies(this IEnumerable<Mock.Dependency.With.Proxy.Data.Transfer.Objects.DatabaseEntities.SqlServer.MockStrategy> rows)
         {
             var strategies = new List<MockStrategy>();
 

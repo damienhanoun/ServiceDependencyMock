@@ -21,7 +21,6 @@ All can have a context which can be used to :
 # Todo list
 
 ## Functionalities
-- Make it available through nuget package
 - Generate proxy dynamicly
 - Create a "mock only on error" strategy
 - Add some analyse method to be sure that all call has been used and not more or less for end to end test purpose

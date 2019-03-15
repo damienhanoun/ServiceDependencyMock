@@ -1,20 +1,20 @@
-﻿using ExternalDependency;
-using Mock.Apply.Strategy;
-using Mock.Data.Tranfer.Objects.Strategies;
+﻿using IntegrationTests.ExternalProject;
+using IntegrationTests.ProjectWithProxy.ServiceMethodsStrategies.Get;
+using Mock.Dependency.With.Proxy.Apply.Strategy;
+using Mock.Dependency.With.Proxy.Data.Transfer.Objects.Strategies;
 using System;
 using Unity;
-using YourApplication.ServiceMethodsStrategies.Get;
-using static YourApplication.IOCContainer;
-using static YourApplication.ServiceMethodsStrategies.ServiceMethodsIdentifiers;
+using static IntegrationTests.ProjectWithProxy.IOCContainer;
+using static IntegrationTests.ProjectWithProxy.ServiceMethodsStrategies.ServiceMethodsIdentifiers;
 
-namespace YourApplication
+namespace IntegrationTests.ProjectWithProxy
 {
-    public class ServiceProxy : ExternalService
+    public class ExternalServiceProxy : ExternalService
     {
         private readonly ExternalService service;
         private readonly MockStrategyQuery mockStrategyQuery;
 
-        public ServiceProxy(MockStrategyQuery mockStrategyQuery, ExternalService service)
+        public ExternalServiceProxy(MockStrategyQuery mockStrategyQuery, ExternalService service)
         {
             this.mockStrategyQuery = mockStrategyQuery;
             this.service = service;

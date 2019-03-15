@@ -22,9 +22,9 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "MockStrategiesSqlServer", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Databases", "Databases", "{50B063E4-49E1-4FCA-A833-E4A7E4D37536}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mock.Define.Strategy", "Mock.Define.Strategy\Mock.Define.Strategy.csproj", "{E6DE334D-D983-41CC-995B-B627FAE6414E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Define.Strategy", "Mock.Define.Strategy\Define.Strategy.csproj", "{E6DE334D-D983-41CC-995B-B627FAE6414E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mock.Apply.Strategy", "Mock.Apply.Strategy\Mock.Apply.Strategy.csproj", "{27BB28CF-9905-4C0F-AF56-D15600E4AB15}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Apply.Strategy", "Mock.Apply.Strategy\Apply.Strategy.csproj", "{27BB28CF-9905-4C0F-AF56-D15600E4AB15}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mock.Define.Strategy.Tests", "Mock.Define.Strategy.Tests\Mock.Define.Strategy.Tests.csproj", "{A600CEA3-957F-423B-BF32-4418B4B3CAE1}"
 EndProject
@@ -32,7 +32,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YourApplication", "YourAppl
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Centralized", "Centralized", "{2C374AA8-83A6-4BA6-ABD4-3C1C96CEE65E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mock.Data.Transfer.Objects", "Mock.Data.Transfer.Objects\Mock.Data.Transfer.Objects.csproj", "{B5B565CC-8363-4932-AC0B-9E426174700F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data.Transfer.Objects", "Mock.Data.Transfer.Objects\Data.Transfer.Objects.csproj", "{B5B565CC-8363-4932-AC0B-9E426174700F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{2487A851-0134-4D08-8533-6EBEF20B73CC}"
 EndProject

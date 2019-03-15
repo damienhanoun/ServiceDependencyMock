@@ -1,9 +1,9 @@
 ﻿using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace Mock.Apply.Strategy
+namespace Mock.Dependency.With.Proxy.Apply.Strategy
 {
-    public class DeSerializer
+    internal class DeSerializer
     {
         public static T DeSerialise<T>(byte[] objectToSerialize)
         {

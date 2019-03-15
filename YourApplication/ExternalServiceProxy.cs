@@ -1,6 +1,6 @@
 ﻿using ExternalDependency;
-using Mock.Apply.Strategy;
-using Mock.Data.Tranfer.Objects.Strategies;
+using Mock.Dependency.With.Proxy.Apply.Strategy;
+using Mock.Dependency.With.Proxy.Data.Transfer.Objects.Strategies;
 using System;
 using Unity;
 using YourApplication.ServiceMethodsStrategies.Get;

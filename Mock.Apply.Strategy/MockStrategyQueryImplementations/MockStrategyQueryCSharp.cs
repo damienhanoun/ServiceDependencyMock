@@ -1,10 +1,9 @@
-﻿using Mock.Apply.Strategy.Helpers;
-using Mock.Data.Tranfer.Objects.Strategies;
+﻿using Mock.Dependency.With.Proxy.Data.Transfer.Objects.Strategies;
 using MockStrategiesCSharp;
 using System;
 using System.Linq;
 
-namespace Mock.Apply.Strategy.MockStrategyQueryImplementations
+namespace Mock.Dependency.With.Proxy.Apply.Strategy
 {
     public class MockStrategyQueryCSharp : MockStrategyQuery
     {

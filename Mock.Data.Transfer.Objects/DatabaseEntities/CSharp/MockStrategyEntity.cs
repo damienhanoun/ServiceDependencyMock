@@ -1,4 +1,4 @@
-﻿namespace Mock.Data.Tranfer.Objects.DatabaseEntities.CSharp
+﻿namespace Mock.Dependency.With.Proxy.Data.Transfer.Objects.DatabaseEntities.CSharp
 {
     public class MockStrategyEntity
     {

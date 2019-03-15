@@ -1,7 +1,7 @@
-﻿using YourApplication.ServiceMethodsStrategies.Get;
+﻿using IntegrationTests.ProjectWithProxy.ServiceMethodsStrategies.Get;
 using Unity;
 
-namespace YourApplication
+namespace IntegrationTests.ProjectWithProxy
 {
     public static class IOCContainer
     {

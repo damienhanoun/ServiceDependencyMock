@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Mock.Data.Tranfer.Objects.Strategies
+namespace Mock.Dependency.With.Proxy.Data.Transfer.Objects.Strategies
 {
     [Serializable]
     public class MethodToMockWithMethodStrategy : MockStrategy

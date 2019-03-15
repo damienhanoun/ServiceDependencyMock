@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 
-namespace Examples
+namespace IntegrationTests.ProjectWithProxy.Helpers
 {
     public static class ConfigurationReader
     {

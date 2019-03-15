@@ -33,11 +33,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Mock.Data.Transfer.Objects, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Mock.Dependency.With.Proxy.Data.Transfer.Objects.1.0.4\lib\netstandard2.0\Mock.Data.Transfer.Objects.dll</HintPath>
+    <Reference Include="Data.Transfer.Objects, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mock.Dependency.With.Proxy.Data.Transfer.Objects.1.0.7\lib\netstandard2.0\Data.Transfer.Objects.dll</HintPath>
     </Reference>
-    <Reference Include="Mock.Define.Strategy, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Mock.Dependency.With.Proxy.Define.Strategy.1.0.4\lib\netstandard2.0\Mock.Define.Strategy.dll</HintPath>
+    <Reference Include="Define.Strategy, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mock.Dependency.With.Proxy.Define.Strategy.1.0.7\lib\netstandard2.0\Define.Strategy.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

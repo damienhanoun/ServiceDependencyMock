@@ -1,4 +1,4 @@
-﻿namespace YourApplication.ServiceMethodsStrategies.Get
+﻿namespace IntegrationTests.ProjectWithProxy.ServiceMethodsStrategies.Get
 {
     public class ServiceGetOne : ServiceGetTemplate
     {

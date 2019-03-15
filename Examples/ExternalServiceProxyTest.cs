@@ -1,43 +1,41 @@
-﻿using ExternalDependency;
+﻿using IntegrationTests.ExternalProject;
+using IntegrationTests.ProjectWithProxy;
+using IntegrationTests.ProjectWithProxy.ServiceMethodsStrategies.Get;
 using Microsoft.EntityFrameworkCore;
-using Mock.Apply.Strategy;
-using Mock.Apply.Strategy.MockStrategyQueryImplementations;
-using Mock.Data.Tranfer.Objects.DatabaseEntities.CSharp;
-using Mock.Data.Tranfer.Objects.DatabaseEntities.SqlServer;
-using Mock.Define.Strategy;
-using Mock.Define.Strategy.Builder;
-using Mock.Define.Strategy.MockStrategyRepositoryImplementations;
+using Mock.Dependency.With.Proxy.Apply.Strategy;
+using Mock.Dependency.With.Proxy.Data.Transfer.Objects.DatabaseEntities.CSharp;
+using Mock.Dependency.With.Proxy.Data.Transfer.Objects.DatabaseEntities.SqlServer;
+using Mock.Dependency.With.Proxy.Define.Strategy;
 using MockStrategiesCSharp;
 using NFluent;
 using NSubstitute;
 using System;
 using System.Collections.Generic;
 using Xunit;
-using YourApplication;
-using YourApplication.ServiceMethodsStrategies.Get;
-using static Examples.ConfigurationReader;
-using static YourApplication.ServiceMethodsStrategies.ServiceMethodsIdentifiers;
+using static IntegrationTests.ProjectWithProxy.Helpers.ConfigurationReader;
+using static IntegrationTests.ProjectWithProxy.ServiceMethodsStrategies.ServiceMethodsIdentifiers;
 
-namespace Examples
+namespace IntegrationTests
 {
-    public class ServiceProxyTest : IDisposable
+    public class ExternalServiceProxyTest : IDisposable
     {
-        private readonly ServiceProxy serviceProxy;
-
         private readonly MockStrategyRepository mockStrategyRepository;
         private readonly MockStrategyQuery mockStrategyQuery;
+
         private readonly ExternalService service;
+        private readonly ExternalService serviceProxy;
+
         private static readonly DbContextOptionsBuilder<MockStrategiesContext> optionsBuilder;
         private static readonly string connectionString;
 
-        static ServiceProxyTest()
+        static ExternalServiceProxyTest()
         {
             connectionString = Get("ConnectionString");
             optionsBuilder = new DbContextOptionsBuilder<MockStrategiesContext>();
             optionsBuilder.UseSqlServer(connectionString);
         }
 
-        public ServiceProxyTest()
+        public ExternalServiceProxyTest()
         {
             this.mockStrategyRepository = new MockStrategyRepositoryCSharp();
             this.mockStrategyQuery = new MockStrategyQueryCSharp();
@@ -45,7 +43,7 @@ namespace Examples
             //this.mockStrategyQuery = new MockStrategyQuerySqlServer(connectionString);
 
             this.service = Substitute.For<ExternalService>();
-            this.serviceProxy = new ServiceProxy(this.mockStrategyQuery, this.service);
+            this.serviceProxy = new ExternalServiceProxy(this.mockStrategyQuery, this.service);
 
             //using (var context = new MockStrategiesContext(optionsBuilder.Options))
             //    context.Database.ExecuteSqlCommand("TRUNCATE TABLE MockStrategy");

@@ -1,5 +1,4 @@
-﻿using Mock.Define.Strategy.Builder;
-using Mock.Define.Strategy.MockStrategyRepositoryImplementations;
+﻿using Mock.Dependency.With.Proxy.Define.Strategy;
 using YourApplication;
 
 namespace ProjectWhichDefineStrategies
