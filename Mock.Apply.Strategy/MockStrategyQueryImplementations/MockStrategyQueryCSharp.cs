@@ -7,8 +7,18 @@ namespace Mock.Dependency.With.Proxy.Apply.Strategy
 {
     public class MockStrategyQueryCSharp : MockStrategyQuery
     {
+        private readonly MockConfiguration mockConfiguration;
+
+        public MockStrategyQueryCSharp(MockConfiguration mockConfiguration)
+        {
+            this.mockConfiguration = mockConfiguration;
+        }
+
         public MockStrategy GetMockStrategy(string methodIdentifier, Func<MockStrategy, bool> inWantedContext)
         {
+            if (!this.mockConfiguration.IsActivated())
+                return new NoMockStrategy();
+
             return MockStrategies.MockStrategy
                         .Where(m => m.MethodId == methodIdentifier)
                         .DeserializeMockStrategies()

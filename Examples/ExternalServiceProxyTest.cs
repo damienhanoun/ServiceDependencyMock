@@ -21,6 +21,7 @@ namespace IntegrationTests
     {
         private readonly MockStrategyRepository mockStrategyRepository;
         private readonly MockStrategyQuery mockStrategyQuery;
+        private readonly MockConfiguration mockConfiguration;
 
         private readonly ExternalService service;
         private readonly ExternalService serviceProxy;
@@ -37,10 +38,14 @@ namespace IntegrationTests
 
         public ExternalServiceProxyTest()
         {
+            this.mockConfiguration = Substitute.For<MockConfiguration>();
+            this.mockConfiguration.IsActivated().Returns(true);
+
             this.mockStrategyRepository = new MockStrategyRepositoryCSharp();
-            this.mockStrategyQuery = new MockStrategyQueryCSharp();
+            this.mockStrategyQuery = new MockStrategyQueryCSharp(this.mockConfiguration);
+
             //this.mockStrategyRepository = new MockStrategyRepositorySqlServer(connectionString);
-            //this.mockStrategyQuery = new MockStrategyQuerySqlServer(connectionString);
+            //this.mockStrategyQuery = new MockStrategyQuerySqlServer(connectionString, this.mockConfiguration);
 
             this.service = Substitute.For<ExternalService>();
             this.serviceProxy = new ExternalServiceProxy(this.mockStrategyQuery, this.service);
@@ -292,6 +297,25 @@ namespace IntegrationTests
             //Assert
             Check.That(resultMocked).IsEqualTo(1);
             Check.That(resultWithoutMock).IsEqualTo(0);
+        }
+
+        [Fact]
+        public void Should_not_mock_When_library_is_desactivated()
+        {
+            //Arrange
+            this.mockConfiguration.IsActivated().Returns(false);
+
+            var mockMethodStrategy = MockStrategyBuilder.ForMethod(GetId)
+                .OnceWithSubstituteBehavior(nameof(ServiceGetOne));
+            this.mockStrategyRepository.MockMethod(mockMethodStrategy);
+
+            this.service.Get().Returns(0);
+
+            //Act
+            this.serviceProxy.Get();
+
+            //Assert
+            this.service.Received().Get();
         }
     }
 }

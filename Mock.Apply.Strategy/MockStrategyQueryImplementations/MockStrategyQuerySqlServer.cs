@@ -9,15 +9,20 @@ namespace Mock.Dependency.With.Proxy.Apply.Strategy
     public class MockStrategyQuerySqlServer : MockStrategyQuery
     {
         private readonly DbContextOptionsBuilder<MockStrategiesContext> optionsBuilder;
+        private readonly MockConfiguration mockConfiguration;
 
-        public MockStrategyQuerySqlServer(string connectionString)
+        public MockStrategyQuerySqlServer(string connectionString, MockConfiguration mockConfiguration)
         {
             this.optionsBuilder = new DbContextOptionsBuilder<MockStrategiesContext>();
             this.optionsBuilder.UseSqlServer(connectionString);
+            this.mockConfiguration = mockConfiguration;
         }
 
         public MockStrategy GetMockStrategy(string methodIdentifier, Func<MockStrategy, bool> inWantedContext)
         {
+            if (!this.mockConfiguration.IsActivated())
+                return new NoMockStrategy();
+
             using (var context = new MockStrategiesContext(this.optionsBuilder.Options))
             {
                 return context.MockStrategy.Where(m => m.MethodId == methodIdentifier)

@@ -7,7 +7,7 @@ This will allow to deal with the following cases :
 - mock a service on all environment but production (for long call time or money reason)
 
 # How it work
-## Define strategy part
+## Define a mock strategy
 - Define a strategy to mock the wanted method :
 ```csharp
 using Mock.Dependency.With.Proxy.Define.Strategy; 
@@ -38,7 +38,7 @@ var repository = new MockStrategyRepositorySqlServer("the connectionString");
 repository.MockMethod(mockMethodStrategy);
 ```
 
-## Apply strategy part
+## Apply the mock through a proxy
 - Get data from the database
 ```csharp
 using Mock.Dependency.With.Proxy.Apply.Strategy;
@@ -78,6 +78,9 @@ else if (mockStrategy is SubstituteBehaviorStrategy methodStrategy)
 //it don't remove if strategy should always be applied
 mockStrategyQuery.RemoveStrategy(mockStrategy);
 ```
+
+## Activate/Desactivate Mocking
+Implement IsActivate() in MockConfiguration and give it to one of the implementation of MockStrategyQuery
 
 # Todo list
 
