@@ -14,7 +14,6 @@ This will allow to deal with the following cases :
 
 # How it work
 ## Define a mock strategy
-- Define a strategy to mock the wanted method :
 ```csharp
 using Mock.Dependency.With.Proxy.Define.Strategy;
 
