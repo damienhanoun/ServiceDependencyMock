@@ -58,11 +58,11 @@ namespace Mock.Dependency.With.Proxy.Define.Strategy.Tests
             //Act
             var mockStrategy = MockStrategyBuilder
                 .ForMethod(methodId)
-                .OnceWithMethodMockStrategy(nameof(MockMethodStrategy))
+                .OnceWithSubstituteBehavior(nameof(MockMethodStrategy))
                 .WithContext(context);
 
             //Assert
-            var expectedMockStrategy = new MethodToMockWithMethodStrategy()
+            var expectedMockStrategy = new SubstituteBehaviorStrategy()
             {
                 MethodId = methodId,
                 MethodMockStrategy = nameof(MockMethodStrategy),
@@ -79,10 +79,10 @@ namespace Mock.Dependency.With.Proxy.Define.Strategy.Tests
 
             //Act
             var mockStrategy = MockStrategyBuilder.ForMethod(methodId)
-                .OnceWithMethodMockStrategy(nameof(MockMethodStrategy));
+                .OnceWithSubstituteBehavior(nameof(MockMethodStrategy));
 
             //Assert
-            var expectedMockStrategy = new MethodToMockWithMethodStrategy()
+            var expectedMockStrategy = new SubstituteBehaviorStrategy()
             {
                 MethodId = methodId,
                 MethodMockStrategy = nameof(MockMethodStrategy)
@@ -98,10 +98,10 @@ namespace Mock.Dependency.With.Proxy.Define.Strategy.Tests
 
             //Act
             var mockStrategy = MockStrategyBuilder.ForMethod(methodId)
-                .AlwaysWithMethodMockStrategy(nameof(MockMethodStrategy));
+                .AlwaysWithSubstituteBehavior(nameof(MockMethodStrategy));
 
             //Assert
-            var expectedMockStrategy = new MethodToMockWithMethodStrategy()
+            var expectedMockStrategy = new SubstituteBehaviorStrategy()
             {
                 MethodId = methodId,
                 MethodMockStrategy = nameof(MockMethodStrategy),
@@ -124,7 +124,7 @@ namespace Mock.Dependency.With.Proxy.Define.Strategy.Tests
                 .WithContext(context);
 
             //Assert
-            var expectedMockStrategy = new MethodToMockWithObjectStrategy<int>()
+            var expectedMockStrategy = new ObjectStrategy<int>()
             {
                 MethodId = methodId,
                 MockedObject = mockedObject,
@@ -145,7 +145,7 @@ namespace Mock.Dependency.With.Proxy.Define.Strategy.Tests
                 .AlwaysWithObject(mockedObject);
 
             //Assert
-            var expectedMockStrategy = new MethodToMockWithObjectStrategy<int>
+            var expectedMockStrategy = new ObjectStrategy<int>
             {
                 MethodId = methodId,
                 MockedObject = mockedObject,
@@ -166,7 +166,7 @@ namespace Mock.Dependency.With.Proxy.Define.Strategy.Tests
                 .OnceWithObject(mockedObject);
 
             //Assert
-            var expectedMockStrategy = new MethodToMockWithObjectStrategy<int>
+            var expectedMockStrategy = new ObjectStrategy<int>
             {
                 MethodId = methodId,
                 MockedObject = mockedObject

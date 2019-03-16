@@ -3,7 +3,7 @@
 namespace Mock.Dependency.With.Proxy.Data.Transfer.Objects.Strategies
 {
     [Serializable]
-    public class MethodToMockWithMethodStrategy : MockStrategy
+    public class SubstituteBehaviorStrategy : MockStrategy
     {
         public string MethodMockStrategy;
 
@@ -14,7 +14,7 @@ namespace Mock.Dependency.With.Proxy.Data.Transfer.Objects.Strategies
 
         public override bool Equals(object obj)
         {
-            var mockStrategy = (MethodToMockWithMethodStrategy)obj;
+            var mockStrategy = (SubstituteBehaviorStrategy)obj;
             return this.MethodMockStrategy == mockStrategy.MethodMockStrategy
                 && base.Equals(obj);
         }

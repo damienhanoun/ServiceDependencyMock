@@ -6,18 +6,18 @@ namespace Mock.Dependency.With.Proxy.Define.Strategy
     {
         public string MethodId;
 
-        public MethodToMockWithMethodStrategy OnceWithMethodMockStrategy(string strategy)
+        public SubstituteBehaviorStrategy OnceWithSubstituteBehavior(string strategy)
         {
-            return new MethodToMockWithMethodStrategy
+            return new SubstituteBehaviorStrategy
             {
                 MethodId = MethodId,
                 MethodMockStrategy = strategy
             };
         }
 
-        public MethodToMockWithObjectStrategy<T> OnceWithObject<T>(T mockedObject)
+        public ObjectStrategy<T> OnceWithObject<T>(T mockedObject)
         {
-            return new MethodToMockWithObjectStrategy<T>
+            return new ObjectStrategy<T>
             {
                 MethodId = MethodId,
                 MockedObject = mockedObject
@@ -32,9 +32,9 @@ namespace Mock.Dependency.With.Proxy.Define.Strategy
             };
         }
 
-        public MethodToMockWithMethodStrategy AlwaysWithMethodMockStrategy(string methodMockStrategy)
+        public SubstituteBehaviorStrategy AlwaysWithSubstituteBehavior(string methodMockStrategy)
         {
-            return new MethodToMockWithMethodStrategy
+            return new SubstituteBehaviorStrategy
             {
                 MethodId = MethodId,
                 MethodMockStrategy = methodMockStrategy,
@@ -42,9 +42,9 @@ namespace Mock.Dependency.With.Proxy.Define.Strategy
             };
         }
 
-        public MethodToMockWithObjectStrategy<T> AlwaysWithObject<T>(T mockedObject)
+        public ObjectStrategy<T> AlwaysWithObject<T>(T mockedObject)
         {
-            return new MethodToMockWithObjectStrategy<T>
+            return new ObjectStrategy<T>
             {
                 MethodId = MethodId,
                 MockedObject = mockedObject,

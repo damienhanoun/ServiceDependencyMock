@@ -59,7 +59,7 @@ namespace IntegrationTests
         public void Should_mock_method_behavior()
         {
             //Arrange
-            var mockMethodStrategy = MockStrategyBuilder.ForMethod(GetId).OnceWithMethodMockStrategy(nameof(ServiceGetOne));
+            var mockMethodStrategy = MockStrategyBuilder.ForMethod(GetId).OnceWithSubstituteBehavior(nameof(ServiceGetOne));
             this.mockStrategyRepository.MockMethod(mockMethodStrategy);
 
             //Act
@@ -87,7 +87,7 @@ namespace IntegrationTests
         {
             //Arrange
             var methodMockStrategy = MockStrategyBuilder.ForMethod("fakeMethodId")
-                                            .OnceWithMethodMockStrategy(nameof(ServiceGetOne));
+                                            .OnceWithSubstituteBehavior(nameof(ServiceGetOne));
             this.mockStrategyRepository.MockMethod(methodMockStrategy);
 
             //Act
@@ -101,7 +101,7 @@ namespace IntegrationTests
         public void Should_crash_When_unexisting_method_strategy_is_used()
         {
             //Arrange
-            var methodMockStrategy = MockStrategyBuilder.ForMethod(GetId).OnceWithMethodMockStrategy("unexisting strategy");
+            var methodMockStrategy = MockStrategyBuilder.ForMethod(GetId).OnceWithSubstituteBehavior("unexisting strategy");
             this.mockStrategyRepository.MockMethod(methodMockStrategy);
 
             //Act

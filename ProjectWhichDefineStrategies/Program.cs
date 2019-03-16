@@ -8,12 +8,12 @@ namespace ProjectWhichDefineStrategies
         static void Main(string[] args)
         {
             //Create strategy
-            var mockMethodStrategy = MockStrategyBuilder.ForMethod("")
-                .OnceWithMethodMockStrategy("strategy");
+            var mockStrategy = MockStrategyBuilder.ForMethod("")
+                .OnceWithSubstituteBehavior("strategy");
 
             //Store strategy
             var repository = new MockStrategyRepositorySqlServer("");
-            repository.MockMethod(mockMethodStrategy);
+            repository.MockMethod(mockStrategy);
 
             //Call your code which will use your defined strategy
             var service = new YourOwnService();

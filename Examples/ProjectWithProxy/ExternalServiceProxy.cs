@@ -30,11 +30,11 @@ namespace IntegrationTests.ProjectWithProxy
             {
                 returnedValue = this.service.Get();
             }
-            else if (mockStrategy is MethodToMockWithObjectStrategy<int> objectStrategy)
+            else if (mockStrategy is ObjectStrategy<int> objectStrategy)
             {
                 returnedValue = objectStrategy.MockedObject;
             }
-            else if (mockStrategy is MethodToMockWithMethodStrategy methodStrategy)
+            else if (mockStrategy is SubstituteBehaviorStrategy methodStrategy)
             {
                 returnedValue = ApplyMethodMockStrategy(methodStrategy);
             }
@@ -69,7 +69,7 @@ namespace IntegrationTests.ProjectWithProxy
             };
         }
 
-        private static int ApplyMethodMockStrategy(MethodToMockWithMethodStrategy methodStrategy)
+        private static int ApplyMethodMockStrategy(SubstituteBehaviorStrategy methodStrategy)
         {
             try
             {

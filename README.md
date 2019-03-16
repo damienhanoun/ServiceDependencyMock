@@ -1,31 +1,46 @@
 # Intent
 The project goal is to allow to mock calls to external services in your application by defining a set of reusable patterns and creating libraries for common behavior 
+
 This will allow to deal with the following cases :
 - launch end to end test in a mastered environment
 - mock a service when it is broken and could take time to be up again (in all environment but production)
 - mock a service on all environment but production (for long call time or money reason)
 
 # How it work
+## Define strategy part
 - Define a strategy to mock the wanted method :
-	* With object
-	* With specific behavior
-	* Without anything (you may want to not mock between two mocks)
 ```csharp
 using Mock.Dependency.With.Proxy.Define.Strategy; 
-
-var mockMethodStrategy = MockStrategyBuilder
-	.ForMethod("method id") // which is used in your proxy to be sure you are in the good place to apply it
-    .OnceWithMethodMockStrategy("strategy") // Once or Always | The name of the strategy can be reuse in IOC to load a specific implementation
+```
+	* With object
+```csharp
+var mockStrategy = MockStrategyBuilder.ForMethod("method id")
+	.OnceWithObject(yourObject);
+```
+	* With specific behavior
+```csharp
+var mockStrategy = MockStrategyBuilder.ForMethod("method id")
+	.OnceWithSubstituteBehavior("strategy")
+```
+	* Without anything (you may want to not mock between two mocks)
+```csharp
+var mockStrategy = MockStrategyBuilder.ForMethod("method id")
+    .OnceWithoutMock();
 	.WithContext(new Context(){ ... }); // Not mandatory but if you want to filter on a specific context or get some data to help your implemented mock method to compute a result, fell free to do it
+```
+	* Eventually with a context to apply only when needed or specify data to help to generate return value for substitute behavior
+```csharp
+var mockStrategy = MockStrategyBuilder.ForMethod("method id").OnceWithoutMock();
+	.WithContext(new Context(){ ... })
 ```
 - Store it in a database shared with your project
 ```csharp
-using Mock.Dependency.With.Proxy.Define.Strategy;
-
 var repository = new MockStrategyRepositorySqlServer("the connectionString");
 repository.MockMethod(mockMethodStrategy);
 ```
-- Get data from the database, apply it and delete it
+
+## Apply strategy part
+- Get data from the database
 ```csharp
 using Mock.Dependency.With.Proxy.Apply.Strategy;
 using Mock.Dependency.With.Proxy.Data.Transfer.Objects.Strategies;
@@ -41,7 +56,9 @@ var mockStrategy = mockStrategyQuery.GetMockStrategy("method id", s =>
                 });
                 return inWantedContext;
             });
-
+```
+- Apply it
+```csharp
 //NoMockStrategy is the default if there is no defined strategy
 if (mockStrategy is NoMockStrategy || mockStrategy is ForceNoMockStrategy)
 {
@@ -56,8 +73,11 @@ else if (mockStrategy is MethodToMockWithMethodStrategy methodStrategy)
 	var serviceSubstitute = Container.Resolve<ServiceGetTemplate>(methodStrategy.MethodMockStrategy);
     returnedValue = serviceSubstitute.Get();
 }
-
-mockStrategyQuery.RemoveStrategy(mockStrategy); //it don't remove if strategy should always be applied
+```
+- Delete it
+```csharp
+//it don't remove if strategy should always be applied
+mockStrategyQuery.RemoveStrategy(mockStrategy);
 ```
 
 # Todo list

@@ -18,7 +18,7 @@ namespace Mock.Dependency.With.Proxy.Define.Strategy
             MockStrategies.MockStrategy.Add(row);
         }
 
-        public void MockMethod(MethodToMockWithMethodStrategy mockMethodStrategy)
+        public void MockMethod(SubstituteBehaviorStrategy mockMethodStrategy)
         {
             var row = new MockStrategyEntity
             {
@@ -29,7 +29,7 @@ namespace Mock.Dependency.With.Proxy.Define.Strategy
             MockStrategies.MockStrategy.Add(row);
         }
 
-        public void MockObject<T>(MethodToMockWithObjectStrategy<T> mockObjectStrategy)
+        public void MockObject<T>(ObjectStrategy<T> mockObjectStrategy)
         {
             var row = new MockStrategyEntity
             {

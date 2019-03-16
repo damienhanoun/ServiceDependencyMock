@@ -30,13 +30,13 @@ namespace YourApplication
             {
                 returnedValue = this.service.Get();
             }
-            else if (mockStrategy is MethodToMockWithObjectStrategy<int> objectStrategy)
+            else if (mockStrategy is ObjectStrategy<int> objectStrategy)
             {
                 returnedValue = objectStrategy.MockedObject;
             }
-            else if (mockStrategy is MethodToMockWithMethodStrategy methodStrategy)
+            else if (mockStrategy is SubstituteBehaviorStrategy substituteStrategy)
             {
-                returnedValue = ApplyMethodMockStrategy(methodStrategy);
+                returnedValue = ApplyMethodMockStrategy(substituteStrategy);
             }
             else
             {
@@ -68,16 +68,16 @@ namespace YourApplication
             };
         }
 
-        private static int ApplyMethodMockStrategy(MethodToMockWithMethodStrategy methodStrategy)
+        private static int ApplyMethodMockStrategy(SubstituteBehaviorStrategy substituteStrategy)
         {
             try
             {
-                var serviceSubstitute = Container.Resolve<ServiceGetTemplate>(methodStrategy.MethodMockStrategy);
+                var serviceSubstitute = Container.Resolve<ServiceGetTemplate>(substituteStrategy.MethodMockStrategy);
                 return serviceSubstitute.Get();
             }
             catch (ResolutionFailedException)
             {
-                throw new Exception($"Method strategy '{methodStrategy.MethodMockStrategy}' is not defined");
+                throw new Exception($"Method strategy '{substituteStrategy.MethodMockStrategy}' is not defined");
             }
         }
     }

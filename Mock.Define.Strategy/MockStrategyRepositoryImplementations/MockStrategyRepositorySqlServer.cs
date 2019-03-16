@@ -29,7 +29,7 @@ namespace Mock.Dependency.With.Proxy.Define.Strategy
             }
         }
 
-        public void MockMethod(MethodToMockWithMethodStrategy mockMethodStrategy)
+        public void MockMethod(SubstituteBehaviorStrategy mockMethodStrategy)
         {
             using (var context = new MockStrategiesContext(this.optionsBuilder.Options))
             {
@@ -41,7 +41,7 @@ namespace Mock.Dependency.With.Proxy.Define.Strategy
             }
         }
 
-        public void MockObject<T>(MethodToMockWithObjectStrategy<T> mockObjectStrategy)
+        public void MockObject<T>(ObjectStrategy<T> mockObjectStrategy)
         {
             using (var context = new MockStrategiesContext(this.optionsBuilder.Options))
             {

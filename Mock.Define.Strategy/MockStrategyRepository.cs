@@ -4,8 +4,8 @@ namespace Mock.Dependency.With.Proxy.Define.Strategy
 {
     public interface MockStrategyRepository
     {
-        void MockMethod(MethodToMockWithMethodStrategy mockMethodStrategy);
-        void MockObject<T>(MethodToMockWithObjectStrategy<T> mockObjectStrategy);
+        void MockMethod(SubstituteBehaviorStrategy mockMethodStrategy);
+        void MockObject<T>(ObjectStrategy<T> mockObjectStrategy);
         void DontMock(ForceNoMockStrategy noMockStrategy);
         void RemoveStrategy(MockStrategy mockStrategy);
     }
