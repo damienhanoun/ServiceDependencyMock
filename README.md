@@ -6,45 +6,48 @@ This will allow to deal with the following cases :
 - mock a service when it is broken and could take time to be up again (in all environment but production)
 - mock a service on all environment but production (for long call time or money reason)
 
+# Installation
+- Install database with sql project
+- Look at DefaultCredentials.sql to be able to create connectionString according to it
+- In your main project, get Mock.Dependency.With.Proxy.Define.Strategy nuget package
+- In the project which will set up the mock strategy in the database, get Mock.Dependency.With.Proxy.Apply.Strategy nuget package
+
 # How it work
 ## Define a mock strategy
 - Define a strategy to mock the wanted method :
 ```csharp
-using Mock.Dependency.With.Proxy.Define.Strategy; 
-```
-	* With object
-```csharp
+using Mock.Dependency.With.Proxy.Define.Strategy;
+
+//Object
 var mockStrategy = MockStrategyBuilder.ForMethod("method id")
 	.OnceWithObject(yourObject);
-```
-	* With specific behavior
-```csharp
+
+//Behavior
 var mockStrategy = MockStrategyBuilder.ForMethod("method id")
 	.OnceWithSubstituteBehavior("strategy")
-```
-	* Without anything (you may want to not mock between two mocks)
-```csharp
+
+//Without anything (you may want to not mock between two mocks)
 var mockStrategy = MockStrategyBuilder.ForMethod("method id")
     .OnceWithoutMock();
-```
-	* Eventually with a context to apply only when needed or specify data to help to generate return value for substitute behavior
-```csharp
+
+//Eventually with a context to apply only when needed or specify data to help to generate return value for substitute behavior
 var mockStrategy = MockStrategyBuilder.ForMethod("method id").OnceWithoutMock();
 	.WithContext(new Context(){ ... })
-```
-- Store it in a database shared with your project
-```csharp
-var repository = new MockStrategyRepositorySqlServer("the connectionString");
+
+//Store it in a database
+var repository = new MockStrategyRepositorySqlServer(connectionString);
 repository.MockMethod(mockMethodStrategy);
 ```
 
 ## Apply the mock through a proxy
-- Get data from the database
 ```csharp
 using Mock.Dependency.With.Proxy.Apply.Strategy;
 using Mock.Dependency.With.Proxy.Data.Transfer.Objects.Strategies;
 
-var mockStrategy = mockStrategyQuery.GetMockStrategy("method id", s =>
+//Get data from the database with filter or not
+//If you want to be allow to desactivate mock, implement MockConfiguration and give it as parameter
+var mockStrategyRepository = new MockStrategyRepository(connectionString /*, mockConfiguration */);
+var mockStrategy = mockStrategyRepository.GetMockStrategy("method id", s =>
             {
                 bool inWantedContext = true;
                 s.Context.MatchSome(c =>
@@ -55,10 +58,9 @@ var mockStrategy = mockStrategyQuery.GetMockStrategy("method id", s =>
                 });
                 return inWantedContext;
             });
-```
-- Apply it
-```csharp
-//NoMockStrategy is the default if there is no defined strategy
+
+//Apply strategy
+//NoMockStrategy is the default if there is no defined strategy or if library is desactivated
 if (mockStrategy is NoMockStrategy || mockStrategy is ForceNoMockStrategy)
 {
     returnedValue = service.Get();
@@ -67,20 +69,15 @@ else if (mockStrategy is ObjectStrategy<int> objectStrategy)
 {
     returnedValue = objectStrategy.MockedObject;
 }
-else if (mockStrategy is SubstituteBehaviorStrategy methodStrategy)
+else if (mockStrategy is SubstituteBehaviorStrategy substituteBehaviorStrategy)
 {
-	var serviceSubstitute = Container.Resolve<ServiceGetTemplate>(methodStrategy.MethodMockStrategy);
+	var serviceSubstitute = Container.Resolve<ServiceGetTemplate>(substituteBehaviorStrategy.BehaviorName);
     returnedValue = serviceSubstitute.Get();
 }
-```
-- Delete it
-```csharp
-//it don't remove if strategy should always be applied
-mockStrategyQuery.RemoveStrategy(mockStrategy);
-```
 
-## Activate/Desactivate Mocking
-Implement IsActivate() in MockConfiguration and give it to one of the implementation of MockStrategyQuery
+//Delete strategy (not removed if strategy should always be applied)
+mockStrategyRepository.RemoveStrategy(mockStrategy);
+```
 
 # Todo list
 

@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <Authors>Damien Hanoun</Authors>
+    <Product>Mock.Define.Strategy</Product>
+    <PackageId>Mock.Dependency.With.Proxy.Define.Strategy</PackageId>
+    <Version>1.0.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Data.Transfer.Objects\Data.Transfer.Objects.csproj" />
+  </ItemGroup>
+  
+</Project>

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntegrationTests", "Examples\IntegrationTests.csproj", "{D2373A74-2213-48F7-8EE1-7A4610999909}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Integration.Tests", "Integration.Tests\Integration.Tests.csproj", "{D2373A74-2213-48F7-8EE1-7A4610999909}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExternalDependency", "ExternalDependency\ExternalDependency.csproj", "{8F544D8F-442B-4D1F-AC9D-9136F8E85F5B}"
 EndProject
@@ -12,27 +12,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MockStrategiesCSharp", "MockStrategiesCSharp\MockStrategiesCSharp.csproj", "{C564B177-8B8F-4490-82DB-0EABDCCC17D3}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{D5F707DD-F447-4E35-9D42-EE46DDE7F43E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{5DCB6D2B-794E-4B55-BBB2-0C93C77AF8DC}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "MockStrategiesSqlServer", "MockStrategiesSqlServer\MockStrategiesSqlServer.sqlproj", "{56BEA360-8C87-4740-B8BF-E707AF7F5289}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Databases", "Databases", "{50B063E4-49E1-4FCA-A833-E4A7E4D37536}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Define.Strategy", "Define.Strategy\Define.Strategy.csproj", "{E6DE334D-D983-41CC-995B-B627FAE6414E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Define.Strategy", "Mock.Define.Strategy\Define.Strategy.csproj", "{E6DE334D-D983-41CC-995B-B627FAE6414E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Apply.Strategy", "Apply.Strategy\Apply.Strategy.csproj", "{27BB28CF-9905-4C0F-AF56-D15600E4AB15}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Apply.Strategy", "Mock.Apply.Strategy\Apply.Strategy.csproj", "{27BB28CF-9905-4C0F-AF56-D15600E4AB15}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Define.Strategy.Tests", "Mock.Define.Strategy.Tests\Define.Strategy.Tests.csproj", "{A600CEA3-957F-423B-BF32-4418B4B3CAE1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Define.Strategy.Tests", "Define.Strategy.Tests\Define.Strategy.Tests.csproj", "{A600CEA3-957F-423B-BF32-4418B4B3CAE1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YourApplication", "YourApplication\YourApplication.csproj", "{8850629B-5FB3-485C-B3BB-7FDF7B344E6A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Centralized", "Centralized", "{2C374AA8-83A6-4BA6-ABD4-3C1C96CEE65E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data.Transfer.Objects", "Mock.Data.Transfer.Objects\Data.Transfer.Objects.csproj", "{B5B565CC-8363-4932-AC0B-9E426174700F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data.Transfer.Objects", "Data.Transfer.Objects\Data.Transfer.Objects.csproj", "{B5B565CC-8363-4932-AC0B-9E426174700F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{2487A851-0134-4D08-8533-6EBEF20B73CC}"
 EndProject
@@ -58,10 +54,6 @@ Global
 		{8F544D8F-442B-4D1F-AC9D-9136F8E85F5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F544D8F-442B-4D1F-AC9D-9136F8E85F5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F544D8F-442B-4D1F-AC9D-9136F8E85F5B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C564B177-8B8F-4490-82DB-0EABDCCC17D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C564B177-8B8F-4490-82DB-0EABDCCC17D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C564B177-8B8F-4490-82DB-0EABDCCC17D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C564B177-8B8F-4490-82DB-0EABDCCC17D3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{56BEA360-8C87-4740-B8BF-E707AF7F5289}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{56BEA360-8C87-4740-B8BF-E707AF7F5289}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56BEA360-8C87-4740-B8BF-E707AF7F5289}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
@@ -99,9 +91,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{D2373A74-2213-48F7-8EE1-7A4610999909} = {2487A851-0134-4D08-8533-6EBEF20B73CC}
 		{8F544D8F-442B-4D1F-AC9D-9136F8E85F5B} = {39168B07-6F59-4824-9184-24BA6E411C21}
-		{C564B177-8B8F-4490-82DB-0EABDCCC17D3} = {50B063E4-49E1-4FCA-A833-E4A7E4D37536}
-		{56BEA360-8C87-4740-B8BF-E707AF7F5289} = {50B063E4-49E1-4FCA-A833-E4A7E4D37536}
-		{50B063E4-49E1-4FCA-A833-E4A7E4D37536} = {2C374AA8-83A6-4BA6-ABD4-3C1C96CEE65E}
+		{56BEA360-8C87-4740-B8BF-E707AF7F5289} = {2C374AA8-83A6-4BA6-ABD4-3C1C96CEE65E}
 		{E6DE334D-D983-41CC-995B-B627FAE6414E} = {EE7400E8-05D7-4A20-BE40-9CCAEC60088F}
 		{27BB28CF-9905-4C0F-AF56-D15600E4AB15} = {EE7400E8-05D7-4A20-BE40-9CCAEC60088F}
 		{A600CEA3-957F-423B-BF32-4418B4B3CAE1} = {2487A851-0134-4D08-8533-6EBEF20B73CC}
