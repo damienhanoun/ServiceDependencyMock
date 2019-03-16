@@ -85,7 +85,6 @@ Implement IsActivate() in MockConfiguration and give it to one of the implementa
 # Todo list
 
 ## Functionalities
-- Allow to desactivate mock
 - Find an elegant way to get the context in a class used as strategy (to define a specific behavior)
 - Generate proxy dynamicly
 - Create a "mock only on error" strategy

@@ -1,6 +1,9 @@
 ﻿using Mock.Dependency.With.Proxy.Data.Transfer.Objects.DatabaseEntities.CSharp;
 using Mock.Dependency.With.Proxy.Data.Transfer.Objects.Strategies;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("IntegrationTests")]
 
 namespace Mock.Dependency.With.Proxy.Apply.Strategy
 {

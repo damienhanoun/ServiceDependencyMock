@@ -8,5 +8,6 @@ namespace Mock.Dependency.With.Proxy.Define.Strategy
         void MockObject<T>(ObjectStrategy<T> mockObjectStrategy);
         void DontMock(ForceNoMockStrategy noMockStrategy);
         void RemoveStrategy(MockStrategy mockStrategy);
+        void CleanUnUsedStrategiesDefinedByThisRepository();
     }
 }

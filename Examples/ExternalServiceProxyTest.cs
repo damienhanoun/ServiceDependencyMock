@@ -1,4 +1,5 @@
 ﻿using IntegrationTests.ExternalProject;
+using IntegrationTests.Helpers;
 using IntegrationTests.ProjectWithProxy;
 using IntegrationTests.ProjectWithProxy.ServiceMethodsStrategies.Get;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +20,8 @@ namespace IntegrationTests
 {
     public class ExternalServiceProxyTest : IDisposable
     {
+        private readonly HelperRepository helperRepository;
+
         private readonly MockStrategyRepository mockStrategyRepository;
         private readonly MockStrategyQuery mockStrategyQuery;
         private readonly MockConfiguration mockConfiguration;
@@ -38,20 +41,22 @@ namespace IntegrationTests
 
         public ExternalServiceProxyTest()
         {
+
             this.mockConfiguration = Substitute.For<MockConfiguration>();
             this.mockConfiguration.IsActivated().Returns(true);
 
             this.mockStrategyRepository = new MockStrategyRepositoryCSharp();
             this.mockStrategyQuery = new MockStrategyQueryCSharp(this.mockConfiguration);
+            this.helperRepository = new HelperRepositoryCSharp();
 
             //this.mockStrategyRepository = new MockStrategyRepositorySqlServer(connectionString);
             //this.mockStrategyQuery = new MockStrategyQuerySqlServer(connectionString, this.mockConfiguration);
+            //this.helperRepository = new HelperRepositorySqlServer(optionsBuilder);
+            //using (var context = new MockStrategiesContext(optionsBuilder.Options))
+            //    context.Database.ExecuteSqlCommand("TRUNCATE TABLE MockStrategy");
 
             this.service = Substitute.For<ExternalService>();
             this.serviceProxy = new ExternalServiceProxy(this.mockStrategyQuery, this.service);
-
-            //using (var context = new MockStrategiesContext(optionsBuilder.Options))
-            //    context.Database.ExecuteSqlCommand("TRUNCATE TABLE MockStrategy");
         }
 
         public void Dispose()
@@ -316,6 +321,27 @@ namespace IntegrationTests
 
             //Assert
             this.service.Received().Get();
+        }
+
+        [Fact]
+        public void Should_clean_unused_strategy_When_not_applied()
+        {
+            //Arrange
+            this.mockConfiguration.IsActivated().Returns(false);
+
+            var mockMethodStrategy = MockStrategyBuilder.ForMethod(GetId)
+                .OnceWithSubstituteBehavior(nameof(ServiceGetOne));
+            this.mockStrategyRepository.MockMethod(mockMethodStrategy);
+
+            this.service.Get().Returns(0);
+            this.serviceProxy.Get();
+
+            //Act
+            this.mockStrategyRepository.CleanUnUsedStrategiesDefinedByThisRepository();
+
+            //Assert
+            var strategiesInDatabase = this.helperRepository.GetStrategies();
+            Check.That(strategiesInDatabase).IsEmpty();
         }
     }
 }
