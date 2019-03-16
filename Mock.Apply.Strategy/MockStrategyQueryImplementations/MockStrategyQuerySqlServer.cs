@@ -32,6 +32,9 @@ namespace Mock.Dependency.With.Proxy.Apply.Strategy
 
         public void RemoveStrategy(MockStrategy mockStrategy)
         {
+            if (mockStrategy is NoMockStrategy || mockStrategy.IsAlwaysApplied)
+                return;
+
             using (var context = new MockStrategiesContext(this.optionsBuilder.Options))
             {
                 var dbMockStrategy = context.MockStrategy.First(m => m.Id == mockStrategy.Id);

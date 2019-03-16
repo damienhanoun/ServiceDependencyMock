@@ -19,8 +19,11 @@ namespace Mock.Dependency.With.Proxy.Apply.Strategy
 
         public void RemoveStrategy(MockStrategy mockStrategy)
         {
+            if (mockStrategy is NoMockStrategy || mockStrategy.IsAlwaysApplied)
+                return;
+
             var row = MockStrategies.MockStrategy
-                        .First(m => m.UniqueId == mockStrategy.Id);
+                    .First(m => m.UniqueId == mockStrategy.Id);
             MockStrategies.MockStrategy.Remove(row);
         }
     }
