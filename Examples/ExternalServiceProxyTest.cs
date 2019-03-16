@@ -39,6 +39,7 @@ namespace IntegrationTests
         public ExternalServiceProxyTest()
         {
             this.mockConfiguration = Substitute.For<MockConfiguration>();
+            this.mockConfiguration.IsActivated().Returns(true);
 
             this.UseCSharp();
             //this.UseSqlServer();
