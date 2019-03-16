@@ -9,8 +9,8 @@ This will allow to deal with the following cases :
 # Installation
 - Install database with sql project
 - Look at DefaultCredentials.sql to be able to create connectionString according to it
-- In your main project, get [Mock.Dependency.With.Proxy.Define.Strategy](https://www.nuget.org/packages/Mock.Dependency.With.Proxy.Define.Strategy) nuget package
-- In the project which will set up the mock strategy in the database, get [Mock.Dependency.With.Proxy.Apply.Strategy](https://www.nuget.org/packages/Mock.Dependency.With.Proxy.Apply.Strategy) nuget package
+- In the project which will set up the mock strategy in the database, get [Mock.Dependency.With.Proxy.Define.Strategy](https://www.nuget.org/packages/Mock.Dependency.With.Proxy.Define.Strategy) nuget package
+- In your main project, get [Mock.Dependency.With.Proxy.Apply.Strategy](https://www.nuget.org/packages/Mock.Dependency.With.Proxy.Apply.Strategy) nuget package
 
 # How it work
 ## Define a mock strategy
