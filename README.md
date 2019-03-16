@@ -64,11 +64,11 @@ if (mockStrategy is NoMockStrategy || mockStrategy is ForceNoMockStrategy)
 {
     returnedValue = service.Get();
 }
-else if (mockStrategy is MethodToMockWithObjectStrategy<int> objectStrategy)
+else if (mockStrategy is ObjectStrategy<int> objectStrategy)
 {
     returnedValue = objectStrategy.MockedObject;
 }
-else if (mockStrategy is MethodToMockWithMethodStrategy methodStrategy)
+else if (mockStrategy is SubstituteBehaviorStrategy methodStrategy)
 {
 	var serviceSubstitute = Container.Resolve<ServiceGetTemplate>(methodStrategy.MethodMockStrategy);
     returnedValue = serviceSubstitute.Get();
