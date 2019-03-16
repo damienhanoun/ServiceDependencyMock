@@ -26,7 +26,6 @@ var mockStrategy = MockStrategyBuilder.ForMethod("method id")
 ```csharp
 var mockStrategy = MockStrategyBuilder.ForMethod("method id")
     .OnceWithoutMock();
-	.WithContext(new Context(){ ... }); // Not mandatory but if you want to filter on a specific context or get some data to help your implemented mock method to compute a result, fell free to do it
 ```
 	* Eventually with a context to apply only when needed or specify data to help to generate return value for substitute behavior
 ```csharp
