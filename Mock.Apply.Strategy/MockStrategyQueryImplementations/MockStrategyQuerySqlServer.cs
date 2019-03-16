@@ -11,6 +11,10 @@ namespace Mock.Dependency.With.Proxy.Apply.Strategy
         private readonly DbContextOptionsBuilder<MockStrategiesContext> optionsBuilder;
         private readonly MockConfiguration mockConfiguration;
 
+        public MockStrategyQuerySqlServer(string connectionString)
+            : this(connectionString, new DefaultMockConfiguration())
+        { }
+
         public MockStrategyQuerySqlServer(string connectionString, MockConfiguration mockConfiguration)
         {
             this.optionsBuilder = new DbContextOptionsBuilder<MockStrategiesContext>();

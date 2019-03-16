@@ -9,6 +9,9 @@ namespace Mock.Dependency.With.Proxy.Apply.Strategy
     {
         private readonly MockConfiguration mockConfiguration;
 
+        public MockStrategyQueryCSharp() : this(new DefaultMockConfiguration())
+        { }
+
         public MockStrategyQueryCSharp(MockConfiguration mockConfiguration)
         {
             this.mockConfiguration = mockConfiguration;

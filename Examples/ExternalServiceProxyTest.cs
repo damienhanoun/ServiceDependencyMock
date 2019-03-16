@@ -17,10 +17,10 @@ namespace IntegrationTests
 {
     public class ExternalServiceProxyTest : IDisposable
     {
-        private readonly HelperRepository helperRepository;
+        private HelperRepository helperRepository;
 
-        private readonly MockStrategyRepository mockStrategyRepository;
-        private readonly MockStrategyQuery mockStrategyQuery;
+        private MockStrategyRepository mockStrategyRepository;
+        private MockStrategyQuery mockStrategyQuery;
         private readonly MockConfiguration mockConfiguration;
 
         private readonly ExternalService service;
@@ -38,22 +38,29 @@ namespace IntegrationTests
 
         public ExternalServiceProxyTest()
         {
-
             this.mockConfiguration = Substitute.For<MockConfiguration>();
-            this.mockConfiguration.IsActivated().Returns(true);
 
-            //this.mockStrategyRepository = new MockStrategyRepositoryCSharp();
-            //this.mockStrategyQuery = new MockStrategyQueryCSharp(this.mockConfiguration);
-            //this.helperRepository = new HelperRepositoryCSharp();
-
-            this.mockStrategyRepository = new MockStrategyRepositorySqlServer(connectionString);
-            this.mockStrategyQuery = new MockStrategyQuerySqlServer(connectionString, this.mockConfiguration);
-            this.helperRepository = new HelperRepositorySqlServer(optionsBuilder);
+            this.UseCSharp();
+            //this.UseSqlServer();
 
             this.helperRepository.RemoveAllStrategies();
 
             this.service = Substitute.For<ExternalService>();
             this.serviceProxy = new ExternalServiceProxy(this.mockStrategyQuery, this.service);
+        }
+
+        private void UseCSharp()
+        {
+            this.mockStrategyRepository = new MockStrategyRepositoryCSharp();
+            this.mockStrategyQuery = new MockStrategyQueryCSharp(this.mockConfiguration);
+            this.helperRepository = new HelperRepositoryCSharp();
+        }
+
+        private void UseSqlServer()
+        {
+            this.mockStrategyRepository = new MockStrategyRepositorySqlServer(connectionString);
+            this.mockStrategyQuery = new MockStrategyQuerySqlServer(connectionString, this.mockConfiguration);
+            this.helperRepository = new HelperRepositorySqlServer(optionsBuilder);
         }
 
         public void Dispose()
