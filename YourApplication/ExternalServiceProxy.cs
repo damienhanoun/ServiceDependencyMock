@@ -12,9 +12,9 @@ namespace YourApplication
     public class ExternalServiceProxy : ExternalService
     {
         private readonly ExternalService service;
-        private readonly MockStrategyQuery mockStrategyQuery;
+        private readonly MockStrategyRepository mockStrategyQuery;
 
-        public ExternalServiceProxy(MockStrategyQuery mockStrategyQuery, ExternalService service)
+        public ExternalServiceProxy(MockStrategyRepository mockStrategyQuery, ExternalService service)
         {
             this.mockStrategyQuery = mockStrategyQuery;
             this.service = service;
@@ -72,12 +72,12 @@ namespace YourApplication
         {
             try
             {
-                var serviceSubstitute = Container.Resolve<ServiceGetTemplate>(substituteStrategy.MethodMockStrategy);
+                var serviceSubstitute = Container.Resolve<ServiceGetTemplate>(substituteStrategy.BehaviorName);
                 return serviceSubstitute.Get();
             }
             catch (ResolutionFailedException)
             {
-                throw new Exception($"Method strategy '{substituteStrategy.MethodMockStrategy}' is not defined");
+                throw new Exception($"Method strategy '{substituteStrategy.BehaviorName}' is not defined");
             }
         }
     }

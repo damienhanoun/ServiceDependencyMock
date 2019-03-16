@@ -13,7 +13,7 @@ namespace ProjectWhichDefineStrategies
 
             //Store strategy
             var repository = new MockStrategyRepositorySqlServer("");
-            repository.MockMethod(mockStrategy);
+            repository.MockBehavior(mockStrategy);
 
             //Call your code which will use your defined strategy
             var service = new YourOwnService();
