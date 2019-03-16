@@ -24,7 +24,7 @@ var mockStrategy = MockStrategyBuilder.ForMethod("method id")
 
 //Behavior
 var mockStrategy = MockStrategyBuilder.ForMethod("method id")
-	.OnceWithSubstituteBehavior("strategy")
+	.OnceWithSubstituteBehavior("behavior name")
 
 //Without anything (you may want to not mock between two mocks)
 var mockStrategy = MockStrategyBuilder.ForMethod("method id")
