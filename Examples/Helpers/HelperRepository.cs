@@ -6,5 +6,7 @@ namespace IntegrationTests.Helpers
     interface HelperRepository
     {
         IEnumerable<MockStrategy> GetStrategies();
+
+        void RemoveAllStrategies();
     }
 }

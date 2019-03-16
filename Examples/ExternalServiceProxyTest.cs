@@ -4,14 +4,11 @@ using IntegrationTests.ProjectWithProxy;
 using IntegrationTests.ProjectWithProxy.ServiceMethodsStrategies.Get;
 using Microsoft.EntityFrameworkCore;
 using Mock.Dependency.With.Proxy.Apply.Strategy;
-using Mock.Dependency.With.Proxy.Data.Transfer.Objects.DatabaseEntities.CSharp;
 using Mock.Dependency.With.Proxy.Data.Transfer.Objects.DatabaseEntities.SqlServer;
 using Mock.Dependency.With.Proxy.Define.Strategy;
-using MockStrategiesCSharp;
 using NFluent;
 using NSubstitute;
 using System;
-using System.Collections.Generic;
 using Xunit;
 using static IntegrationTests.ProjectWithProxy.Helpers.ConfigurationReader;
 using static IntegrationTests.ProjectWithProxy.ServiceMethodsStrategies.ServiceMethodsIdentifiers;
@@ -45,15 +42,15 @@ namespace IntegrationTests
             this.mockConfiguration = Substitute.For<MockConfiguration>();
             this.mockConfiguration.IsActivated().Returns(true);
 
-            this.mockStrategyRepository = new MockStrategyRepositoryCSharp();
-            this.mockStrategyQuery = new MockStrategyQueryCSharp(this.mockConfiguration);
-            this.helperRepository = new HelperRepositoryCSharp();
+            //this.mockStrategyRepository = new MockStrategyRepositoryCSharp();
+            //this.mockStrategyQuery = new MockStrategyQueryCSharp(this.mockConfiguration);
+            //this.helperRepository = new HelperRepositoryCSharp();
 
-            //this.mockStrategyRepository = new MockStrategyRepositorySqlServer(connectionString);
-            //this.mockStrategyQuery = new MockStrategyQuerySqlServer(connectionString, this.mockConfiguration);
-            //this.helperRepository = new HelperRepositorySqlServer(optionsBuilder);
-            //using (var context = new MockStrategiesContext(optionsBuilder.Options))
-            //    context.Database.ExecuteSqlCommand("TRUNCATE TABLE MockStrategy");
+            this.mockStrategyRepository = new MockStrategyRepositorySqlServer(connectionString);
+            this.mockStrategyQuery = new MockStrategyQuerySqlServer(connectionString, this.mockConfiguration);
+            this.helperRepository = new HelperRepositorySqlServer(optionsBuilder);
+
+            this.helperRepository.RemoveAllStrategies();
 
             this.service = Substitute.For<ExternalService>();
             this.serviceProxy = new ExternalServiceProxy(this.mockStrategyQuery, this.service);
@@ -61,7 +58,6 @@ namespace IntegrationTests
 
         public void Dispose()
         {
-            MockStrategies.MockStrategy = new List<MockStrategyEntity>();
             ApplicationDatabase.SessionId = null;
         }
 

@@ -24,5 +24,13 @@ namespace IntegrationTests.Helpers
                         .DeserializeMockStrategies();
             }
         }
+
+        public void RemoveAllStrategies()
+        {
+            using (var context = new MockStrategiesContext(this.optionsBuilder.Options))
+            {
+                context.Database.ExecuteSqlCommand("TRUNCATE TABLE MockStrategy");
+            }
+        }
     }
 }
