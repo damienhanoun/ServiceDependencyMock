@@ -329,5 +329,23 @@ namespace IntegrationTests
             var strategiesInDatabase = this.helperRepository.GetStrategies();
             Check.That(strategiesInDatabase).IsEmpty();
         }
+
+        [Fact]
+        public void Should_not_throw_error_When_try_to_remove_used_strategy()
+        {
+            //Arrange
+            var mockMethodStrategy = MockStrategyBuilder.ForMethod(GetId)
+                .OnceWithSubstituteBehavior(nameof(ServiceGetOne));
+            this.defineMockStrategyRepository.MockBehavior(mockMethodStrategy);
+
+            this.service.Get().Returns(0);
+            this.serviceProxy.Get();
+
+            //Act
+            Action action = () => this.defineMockStrategyRepository.CleanUnUsedStrategiesDefinedByThisRepository();
+
+            //Assert
+            Check.ThatCode(action).DoesNotThrow();
+        }
     }
 }

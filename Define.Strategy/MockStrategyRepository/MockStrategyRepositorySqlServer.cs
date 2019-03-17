@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Mock.Dependency.With.Proxy.Data.Transfer.Objects.DatabaseEntities.SqlServer;
 using Mock.Dependency.With.Proxy.Data.Transfer.Objects.Strategies;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -80,7 +81,13 @@ namespace Mock.Dependency.With.Proxy.Define.Strategy
         public void CleanUnUsedStrategiesDefinedByThisRepository()
         {
             foreach (var strategy in this.savedMockedStrategy)
-                this.RemoveStrategy(strategy);
+            {
+                try
+                {
+                    this.RemoveStrategy(strategy);
+                }
+                catch (InvalidOperationException) { }
+            }
         }
     }
 }
