@@ -12,7 +12,7 @@ namespace Mock.Dependency.With.Proxy.Define.Strategy
     public class MockStrategyRepositorySqlServer : MockStrategyRepository
     {
         private readonly DbContextOptionsBuilder<MockStrategiesContext> optionsBuilder;
-        private readonly List<MockStrategy> savedMockedStrategy;
+        private List<MockStrategy> savedMockedStrategy { get; set; }
 
         public MockStrategyRepositorySqlServer(string connectionString)
         {
@@ -88,6 +88,8 @@ namespace Mock.Dependency.With.Proxy.Define.Strategy
                 }
                 catch (InvalidOperationException) { }
             }
+
+            this.savedMockedStrategy.RemoveAll(_ => true);
         }
     }
 }
