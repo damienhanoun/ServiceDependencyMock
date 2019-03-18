@@ -12,13 +12,13 @@ namespace Mock.Dependency.With.Proxy.Define.Strategy
     public class MockStrategyRepositorySqlServer : MockStrategyRepository
     {
         private readonly DbContextOptionsBuilder<MockStrategiesContext> optionsBuilder;
-        private List<MockStrategy> savedMockedStrategy { get; set; }
+        private List<MockStrategy> savedMockedStrategies { get; set; }
 
         public MockStrategyRepositorySqlServer(string connectionString)
         {
             this.optionsBuilder = new DbContextOptionsBuilder<MockStrategiesContext>();
             this.optionsBuilder.UseSqlServer(connectionString);
-            this.savedMockedStrategy = new List<MockStrategy>();
+            this.savedMockedStrategies = new List<MockStrategy>();
         }
 
         public void DontMock(ForceNoMockStrategy noMockStrategy)
@@ -32,7 +32,7 @@ namespace Mock.Dependency.With.Proxy.Define.Strategy
                 context.SaveChanges();
             }
 
-            this.savedMockedStrategy.Add(noMockStrategy);
+            this.savedMockedStrategies.Add(noMockStrategy);
         }
 
         public void MockBehavior(SubstituteBehaviorStrategy mockMethodStrategy)
@@ -46,7 +46,7 @@ namespace Mock.Dependency.With.Proxy.Define.Strategy
                 context.SaveChanges();
             }
 
-            this.savedMockedStrategy.Add(mockMethodStrategy);
+            this.savedMockedStrategies.Add(mockMethodStrategy);
         }
 
         public void MockObject<T>(ObjectStrategy<T> mockObjectStrategy)
@@ -60,7 +60,7 @@ namespace Mock.Dependency.With.Proxy.Define.Strategy
                 context.SaveChanges();
             }
 
-            this.savedMockedStrategy.Add(mockObjectStrategy);
+            this.savedMockedStrategies.Add(mockObjectStrategy);
         }
 
         private void PreventBadCreationDateOrderingWhenThisOneEqualsToPreviousOne()
@@ -80,7 +80,7 @@ namespace Mock.Dependency.With.Proxy.Define.Strategy
 
         public void CleanUnUsedStrategiesDefinedByThisRepository()
         {
-            foreach (var strategy in this.savedMockedStrategy)
+            foreach (var strategy in this.savedMockedStrategies)
             {
                 try
                 {
@@ -89,7 +89,24 @@ namespace Mock.Dependency.With.Proxy.Define.Strategy
                 catch (InvalidOperationException) { }
             }
 
-            this.savedMockedStrategy.RemoveAll(_ => true);
+            this.savedMockedStrategies.RemoveAll(_ => true);
+        }
+
+        public List<MockStrategy> GetUnusedStrategiesCreatedByThisRepository()
+        {
+            var unusedStrategies = new List<MockStrategy>();
+
+            using (var context = new MockStrategiesContext(this.optionsBuilder.Options))
+            {
+                foreach (var mockStrategy in this.savedMockedStrategies)
+                {
+                    var exist = context.MockStrategy.Any(m => m.Id == mockStrategy.Id);
+                    if (exist)
+                        unusedStrategies.Add(mockStrategy);
+                }
+            }
+
+            return unusedStrategies;
         }
     }
 }

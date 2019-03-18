@@ -14,7 +14,7 @@ using System.Collections.Generic;
 using Xunit;
 using static IntegrationTests.ProjectWithProxy.Helpers.ConfigurationReader;
 using static IntegrationTests.ProjectWithProxy.ServiceMethodsStrategies.ServiceMethodsIdentifiers;
-using MockStrategy2 = Mock.Dependency.With.Proxy.Data.Transfer.Objects.Strategies.MockStrategy;
+using MockStrategyDTO = Mock.Dependency.With.Proxy.Data.Transfer.Objects.Strategies.MockStrategy;
 
 namespace IntegrationTests
 {
@@ -354,6 +354,7 @@ namespace IntegrationTests
         [Fact]
         public void Should_empty_in_memory_list_When_unused_strategy_are_cleaned()
         {
+            //Arrange
             this.mockConfiguration.IsActivated().Returns(false);
 
             var mockMethodStrategy = MockStrategyBuilder.ForMethod(GetId)
@@ -368,8 +369,28 @@ namespace IntegrationTests
 
             //Assert
             var savedMockedStrategy = this.defineMockStrategyRepository
-                .GetPrivateProperty<List<MockStrategy2>>("savedMockedStrategy");
+                .GetPrivateProperty<List<MockStrategyDTO>>("savedMockedStrategies");
             Check.That(savedMockedStrategy).IsEmpty();
+        }
+
+        [Fact]
+        public void Should_return_unused_strategies()
+        {
+            //Arrange
+            this.mockConfiguration.IsActivated().Returns(false);
+
+            var mockMethodStrategy = MockStrategyBuilder.ForMethod(GetId)
+                .OnceWithSubstituteBehavior(nameof(ServiceGetOne));
+            this.defineMockStrategyRepository.MockBehavior(mockMethodStrategy);
+
+            this.service.Get().Returns(0);
+            this.serviceProxy.Get();
+
+            //Act
+            var unusedStrategies = this.defineMockStrategyRepository.GetUnusedStrategiesCreatedByThisRepository();
+
+            //Assert
+            Check.That(unusedStrategies).CountIs(1);
         }
     }
 }
