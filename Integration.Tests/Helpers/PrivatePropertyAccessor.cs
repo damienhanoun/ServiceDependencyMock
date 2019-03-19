@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace Integration.Tests.Helpers
+namespace Integration.Tests.Tests.Helpers
 {
     public static class PrivatePropertyAccessorExtension
     {

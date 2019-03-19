@@ -1,4 +1,4 @@
-﻿namespace IntegrationTests.ProjectWithProxy.ServiceMethodsStrategies
+﻿namespace Integration.Tests.ProjectWithProxy.ServiceMethodsStrategies
 {
     public struct ServiceMethodsIdentifiers
     {

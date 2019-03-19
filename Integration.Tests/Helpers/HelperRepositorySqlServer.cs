@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using MockStrategy = Mock.Dependency.With.Proxy.Data.Transfer.Objects.Strategies.MockStrategy;
 
-namespace IntegrationTests.Helpers
+namespace Integration.Tests.Helpers
 {
     class HelperRepositorySqlServer : HelperRepository
     {

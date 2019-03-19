@@ -1,4 +1,4 @@
-﻿namespace IntegrationTests.ProjectWithProxy
+﻿namespace Integration.Tests.ProjectWithProxy
 {
     public static class ApplicationDatabase
     {

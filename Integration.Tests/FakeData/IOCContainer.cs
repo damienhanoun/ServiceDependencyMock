@@ -1,7 +1,7 @@
-﻿using IntegrationTests.ProjectWithProxy.ServiceMethodsStrategies.Get;
+﻿using Integration.Tests.ProjectWithProxy.ServiceMethodsStrategies.Get;
 using Unity;
 
-namespace IntegrationTests.ProjectWithProxy
+namespace Integration.Tests.ProjectWithProxy
 {
     public static class IOCContainer
     {
@@ -14,7 +14,7 @@ namespace IntegrationTests.ProjectWithProxy
                 if (container == null)
                 {
                     container = new UnityContainer();
-                    container.RegisterType<ServiceGetTemplate, ServiceGetOne>(nameof(ServiceGetOne));
+                    container.RegisterType<ExternalServiceGetTemplate, ServiceGetOne>(nameof(ServiceGetOne));
                 }
 
                 return container;

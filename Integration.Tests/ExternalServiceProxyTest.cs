@@ -1,8 +1,8 @@
-﻿using Integration.Tests.Helpers;
-using IntegrationTests.ExternalProject;
-using IntegrationTests.Helpers;
-using IntegrationTests.ProjectWithProxy;
-using IntegrationTests.ProjectWithProxy.ServiceMethodsStrategies.Get;
+﻿using ExternalDependency;
+using Integration.Tests.Helpers;
+using Integration.Tests.ProjectWithProxy;
+using Integration.Tests.ProjectWithProxy.ServiceMethodsStrategies.Get;
+using Integration.Tests.Tests.Helpers;
 using Microsoft.EntityFrameworkCore;
 using Mock.Dependency.With.Proxy.Apply.Strategy;
 using Mock.Dependency.With.Proxy.Data.Transfer.Objects.DatabaseEntities.SqlServer;
@@ -12,11 +12,11 @@ using NSubstitute;
 using System;
 using System.Collections.Generic;
 using Xunit;
-using static IntegrationTests.ProjectWithProxy.Helpers.ConfigurationReader;
-using static IntegrationTests.ProjectWithProxy.ServiceMethodsStrategies.ServiceMethodsIdentifiers;
+using static Integration.Tests.ProjectWithProxy.Helpers.ConfigurationReader;
+using static Integration.Tests.ProjectWithProxy.ServiceMethodsStrategies.ServiceMethodsIdentifiers;
 using MockStrategyDTO = Mock.Dependency.With.Proxy.Data.Transfer.Objects.Strategies.MockStrategy;
 
-namespace IntegrationTests
+namespace Integration.Tests
 {
     public class ExternalServiceProxyTest
     {
