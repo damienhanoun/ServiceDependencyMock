@@ -10,6 +10,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3E7FF1A8-32A9-4F16-A4A3-1088CE1B1052}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
+		Integration.Tests\RuntimeTextTemplate.cs = Integration.Tests\RuntimeTextTemplate.cs
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{D5F707DD-F447-4E35-9D42-EE46DDE7F43E}"

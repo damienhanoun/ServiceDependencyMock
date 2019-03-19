@@ -80,5 +80,10 @@ namespace YourApplication
                 throw new Exception($"Method strategy '{substituteStrategy.BehaviorName}' is not defined");
             }
         }
+
+        public void Set(int i)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

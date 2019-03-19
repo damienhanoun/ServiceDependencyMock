@@ -6,5 +6,10 @@
         {
             return 0;
         }
+
+        public void Set(int i)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

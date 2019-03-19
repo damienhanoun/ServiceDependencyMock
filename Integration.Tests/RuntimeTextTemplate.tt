@@ -65,6 +65,7 @@ namespace Integration.Tests.ProjectWithProxy
 					parameterListWithTypes.Append(", ");
 				}
 			}
+
 			#>
 	public interface <#=className#><#=name#>Template
 	{
@@ -84,7 +85,6 @@ namespace Integration.Tests.ProjectWithProxy
             this.mockStrategyQuery = mockStrategyQuery;
             this.service = service;
         }
-
 <#
 		foreach(var meth in classType.GetMethods(BindingFlags.DeclaredOnly | BindingFlags.Instance | BindingFlags.Public))
 		{
@@ -105,6 +105,13 @@ namespace Integration.Tests.ProjectWithProxy
 					parameterListWithTypes.Append(", ");
 				}
 			}
+
+			var coma = "";
+			if(!string.IsNullOrWhiteSpace(parameterList.ToString()))
+				coma = ",";
+
+			if(returnType != "void")
+			{
 #>
 
 		public <#=returnType#> <#=name#>(<#=parameterListWithTypes#>)
@@ -115,7 +122,7 @@ namespace Integration.Tests.ProjectWithProxy
 
             if (NoMockStrategy(mockStrategy))
             {
-                returnedValue = this.service.Get();
+                returnedValue = this.service.<#=name#>(<#=parameterList#>);
             }
             else if (mockStrategy is ObjectStrategy<<#=returnType#>> objectStrategy)
             {
@@ -123,7 +130,7 @@ namespace Integration.Tests.ProjectWithProxy
             }
             else if (mockStrategy is SubstituteBehaviorStrategy methodStrategy)
             {
-                returnedValue = ApplyMethodMockStrategy<#=name#>(methodStrategy);
+                returnedValue = ApplyMethodMockStrategy<#=name#>(methodStrategy <#=coma#> <#=parameterList#>);
             }
             else
             {
@@ -134,13 +141,13 @@ namespace Integration.Tests.ProjectWithProxy
 
             return returnedValue;
         }
-
-		private static <#=returnType#> ApplyMethodMockStrategy<#=name#>(SubstituteBehaviorStrategy substituteBehaviorStrategy)
+		
+		private static <#=returnType#> ApplyMethodMockStrategy<#=name#>(SubstituteBehaviorStrategy substituteBehaviorStrategy <#=coma#> <#=parameterListWithTypes#>)
         {
             try
             {
                 var serviceSubstitute = Container.Resolve<<#=className#><#=name#>Template>(substituteBehaviorStrategy.BehaviorName);
-                return serviceSubstitute.<#=name#>();
+                return serviceSubstitute.<#=name#>(<#=parameterList#>);
             }
             catch (ResolutionFailedException)
             {
@@ -148,6 +155,42 @@ namespace Integration.Tests.ProjectWithProxy
             }
         }
 <#
+			} else {
+			#>
+		public void <#=name#>(<#=parameterListWithTypes#>)
+        {
+            var mockStrategy = this.mockStrategyQuery.GetMockStrategy(<#=name#>Id, this.InWantedContext());
+
+            if (NoMockStrategy(mockStrategy))
+            {
+                this.service.<#=name#>(<#=parameterList#>);
+            }
+            else if (mockStrategy is SubstituteBehaviorStrategy methodStrategy)
+            {
+                ApplyMethodMockStrategy<#=name#>(methodStrategy <#=coma#> <#=parameterList#>);
+            }
+            else
+            {
+                throw new Exception("Current mock strategy is not take in account");
+            }
+
+            this.mockStrategyQuery.RemoveStrategy(mockStrategy);
+        }
+
+		private static void ApplyMethodMockStrategy<#=name#>(SubstituteBehaviorStrategy substituteBehaviorStrategy <#=coma#> <#=parameterListWithTypes#>)
+        {
+            try
+            {
+                var serviceSubstitute = Container.Resolve<<#=className#><#=name#>Template>(substituteBehaviorStrategy.BehaviorName);
+                serviceSubstitute.<#=name#>(<#=parameterList#>);
+            }
+            catch (ResolutionFailedException)
+            {
+                throw new Exception($"Method strategy '{substituteBehaviorStrategy.BehaviorName}' is not defined");
+            }
+        }
+			<#
+			}
 		}
 #>
 		

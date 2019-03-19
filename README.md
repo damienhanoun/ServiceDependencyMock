@@ -82,7 +82,6 @@ mockStrategyRepository.RemoveStrategy(mockStrategy);
 
 ## Functionalities
 - Find an elegant way to get the context in a class used as strategy (to define a specific behavior)
-- Generate proxy dynamicly
 - Create a "mock only on error" strategy
 - Add some analyse method to be sure that all call has been used and not more or less for end to end test purpose
 - Not have to use method id. Look for NSubstitute like behavior with DynamicProxy like "myService.Get(Arg.Any()).Return(...)""

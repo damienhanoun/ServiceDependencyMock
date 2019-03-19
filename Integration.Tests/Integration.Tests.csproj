@@ -65,4 +65,8 @@
     </Compile>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="FakeData\ServiceMethodsStrategies\Set\" />
+  </ItemGroup>
+
 </Project>
