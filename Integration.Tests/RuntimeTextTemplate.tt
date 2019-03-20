@@ -6,6 +6,7 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="System.Reflection" #>
+<#@ import namespace="System.Runtime.CompilerServices" #>
 //https://github.com/dotnet/core/issues/2000
 <#@ assembly name="$(SolutionDir)\ExternalDependency\bin\Debug\netstandard2.0\ExternalDependency.dll" #>
 <#@ import namespace="ExternalDependency" #>
@@ -112,11 +113,17 @@ namespace Integration.Tests.ProjectWithProxy
 			if(!string.IsNullOrWhiteSpace(parameterList.ToString()))
 				coma = ",";
 
+			var attType = typeof(AsyncStateMachineAttribute);
+
+			var attrib = (AsyncStateMachineAttribute)meth.GetCustomAttribute(attType);
+
+			var asyncText = attrib == null | name.EndsWith("Async") ? string.Empty : "async";
+
 			if(returnType != "void")
 			{
 #>
 
-		public <#=returnType#> <#=name#>(<#=parameterListWithTypes#>)
+		public <#=asyncText#> <#=returnType#> <#=name#>(<#=parameterListWithTypes#>)
         {
            <#=returnType#> returnedValue;
 
@@ -159,7 +166,7 @@ namespace Integration.Tests.ProjectWithProxy
 <#
 			} else {
 			#>
-		public void <#=name#>(<#=parameterListWithTypes#>)
+		public <#=asyncText#> void <#=name#>(<#=parameterListWithTypes#>)
         {
             var mockStrategy = this.mockStrategyQuery.GetMockStrategy(<#=name#>Id, this.InWantedContext());
 
