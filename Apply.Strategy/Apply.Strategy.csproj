@@ -10,6 +10,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="StructureMap" Version="4.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Data.Transfer.Objects\Data.Transfer.Objects.csproj" />
   </ItemGroup>
 

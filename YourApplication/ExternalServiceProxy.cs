@@ -2,6 +2,7 @@
 using Mock.Dependency.With.Proxy.Apply.Strategy;
 using Mock.Dependency.With.Proxy.Data.Transfer.Objects.Strategies;
 using System;
+using System.Threading.Tasks;
 using Unity;
 using YourApplication.ServiceMethodsStrategies.Get;
 using static YourApplication.IOCContainer;
@@ -82,6 +83,16 @@ namespace YourApplication
         }
 
         public void Set(int i)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<int> GetAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetAsync(int i)
         {
             throw new NotImplementedException();
         }

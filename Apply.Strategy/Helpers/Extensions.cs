@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("IntegrationTests")]
+[assembly: InternalsVisibleTo("Integration.Tests")]
 
 namespace Mock.Dependency.With.Proxy.Apply.Strategy
 {

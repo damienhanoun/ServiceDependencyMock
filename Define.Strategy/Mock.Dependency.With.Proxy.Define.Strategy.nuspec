@@ -5,7 +5,7 @@
         <id>Mock.Dependency.With.Proxy.Define.Strategy</id>
 
         <!-- The package version number that is used when resolving dependencies -->
-        <version>1.0.9</version>
+        <version>1.0.10</version>
 
         <!-- Authors contain text that appears directly on the gallery -->
         <authors>Damien Hanoun</authors>
@@ -49,7 +49,7 @@
 
         <!-- Dependencies are automatically installed when the package is installed -->
         <dependencies>
-          <dependency id="Mock.Dependency.With.Proxy.Data.Transfer.Objects" version="1.0.9" />
+          <dependency id="Mock.Dependency.With.Proxy.Data.Transfer.Objects" version="1.0.10" />
         </dependencies>
     </metadata>
 </package>
