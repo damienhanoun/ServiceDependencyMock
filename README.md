@@ -23,16 +23,8 @@ If there is multiple time the same name for a method in a class, it will not wor
 
 # Minimal Configuration
 
-## Generate proxies
-In the project where you will apply the strategy, a GenerateProxy.tt file will be added to your project (Doesn't work for .NET Core project for now)
-
-Copy past it for each assembly in which you want to create proxy
-
-In each tt file, follow the "TODO" instructions to be able to generate all proxies
-
-The default convention name for proxy is : className + "Proxy"
-
-## Create ids for each proxyfied methods
+## In a shared project
+### Create ids for each proxyfied methods 
 Default name convention : methodName + "Id"
 
 You can create a shared project to set ids in it like :
@@ -43,7 +35,17 @@ public struct ExternalServiceMethodsIdentifiers
 }
 ```
 
-## Update your IOC container with proxy informations
+## In your project 
+### Generate proxies
+In the project where you will apply the strategy, a GenerateProxy.tt file will be added to your project (Doesn't work for .NET Core project for now)
+
+Copy past it for each assembly in which you want to create proxy
+
+In each tt file, follow the "TODO" instructions to be able to generate all proxies
+
+The default convention name for proxy is : className + "Proxy"
+
+### Update your IOC container with proxy informations
 ```csharp
 container.RegisterType<ExternalService>(new InjectionFactory(c =>
 {
@@ -53,7 +55,7 @@ container.RegisterType<ExternalService>(new InjectionFactory(c =>
 }));
 ```
 
-# Use it
+# How to use it
 
 ## Define a mock strategy
 ```csharp
@@ -127,6 +129,7 @@ At the end of each test, call :
 this.defineMockStrategyRepository.CleanUnUsedStrategiesDefinedByThisRepository();
 ```
 to be sure others tests will not be impacted by some unused strategies
+
 
 # Todo list
 
