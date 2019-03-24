@@ -9,7 +9,7 @@ namespace YourApplication
         {
             //Get the service proxy
             var externalService = IOCContainer.Container.Resolve<ExternalService>();
-            var result = externalService.Get();
+            var result = externalService.BrokenMethod();
             //Do something with the result
         }
     }

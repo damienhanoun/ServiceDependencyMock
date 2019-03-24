@@ -6,7 +6,6 @@
     [creationDate] DATETIME NOT NULL DEFAULT getdate(), 
     CONSTRAINT [PK_MockStrategy] PRIMARY KEY ([id])
 )
-
 GO
 
 CREATE INDEX [IX_MockStrategy_Column] ON [dbo].[MockStrategy] ([methodId])

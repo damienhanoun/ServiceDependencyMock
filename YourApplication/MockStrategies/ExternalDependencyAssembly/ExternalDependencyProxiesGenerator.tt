@@ -7,21 +7,13 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="System.Reflection" #>
 <#@ import namespace="System.Runtime.CompilerServices" #>
-
-<#//https://github.com/dotnet/core/issues/2000 #>
-<#//TODO: Add the dependency for the T4 file #>
-<# //assembly name="$(SolutionDir)\ExternalDependency\bin\Debug\netstandard2.0\ExternalDependency.dll" #>
-<# //import namespace="ExternalDependency" #>
+<#@ assembly name="$(SolutionDir)\ExternalDependency\bin\Debug\netstandard2.0\ExternalDependency.dll" #>
+<#@ import namespace="ExternalDependency" #>
 
 <#
-	//TODO: Update the list with class or interface you want to proxify
-	string[] serviceList = { /*"ExternalService"*/ };
+	string[] serviceList = { "ExternalService" };
 
-	//TODO: Uncomment this line and update comment in order to get the wanted assembly
-	//var assembly = Assembly.GetAssembly(typeof(/*Set a class of the wanted assembly*/));
-
-	//TODO:remove this line (which is here only to not make the project crash)
-    var assembly = Assembly.GetExecutingAssembly();
+	var assembly = Assembly.GetAssembly(typeof(ExternalService));
 
     var types = assembly.GetTypes();
 
@@ -47,11 +39,8 @@ using StructureMap;
 using System.Reflection;
 using StructureMapConfigurationException = StructureMap.StructureMapConfigurationException;
 
-//TODO: Add the dependency to service(s) for your proxy(ies)
-//using ExternalDependency;
-
-//TODO: Add identifiers for each mockable method
-//using static YourAssembly.AClassWithAllMethodsIdentifiers;
+using ExternalDependency;
+using static CentralizedInformations.ExtenalServiceMethodsIds;
 
 namespace Mock.Dependency.With.Proxy.Apply.Strategy
 {

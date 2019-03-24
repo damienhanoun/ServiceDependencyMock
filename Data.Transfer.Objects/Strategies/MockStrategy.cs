@@ -2,8 +2,8 @@
 using Optional.Unsafe;
 using System;
 using System.Runtime.CompilerServices;
-[assembly: InternalsVisibleTo("Apply.Strategy")]
-[assembly: InternalsVisibleTo("Define.Strategy")]
+[assembly: InternalsVisibleTo("Mock.Dependency.With.Proxy.Apply.Strategy")]
+[assembly: InternalsVisibleTo("Mock.Dependency.With.Proxy.Define.Strategy")]
 
 namespace Mock.Dependency.With.Proxy.Data.Transfer.Objects.Strategies
 {

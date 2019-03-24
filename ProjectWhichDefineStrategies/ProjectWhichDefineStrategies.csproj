@@ -34,13 +34,34 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Data.Transfer.Objects, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Mock.Dependency.With.Proxy.Data.Transfer.Objects.1.0.9\lib\netstandard2.0\Data.Transfer.Objects.dll</HintPath>
+      <HintPath>..\packages\Mock.Dependency.With.Proxy.Data.Transfer.Objects.1.0.12\lib\netstandard2.0\Data.Transfer.Objects.dll</HintPath>
     </Reference>
-    <Reference Include="Define.Strategy, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Mock.Dependency.With.Proxy.Define.Strategy.1.0.9\lib\netstandard2.0\Define.Strategy.dll</HintPath>
+    <Reference Include="Mock.Dependency.With.Proxy.Define.Strategy, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mock.Dependency.With.Proxy.Define.Strategy.1.0.12\lib\netstandard2.0\Mock.Dependency.With.Proxy.Define.Strategy.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap, Version=4.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\StructureMap.4.7.0\lib\net45\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.ConfigurationManager, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Configuration.ConfigurationManager.4.5.0\lib\net461\System.Configuration.ConfigurationManager.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Security.AccessControl, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.AccessControl.4.5.0\lib\net461\System.Security.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Permissions, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Permissions.4.5.0\lib\net461\System.Security.Permissions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Principal.Windows, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Principal.Windows.4.5.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -57,10 +78,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CentralizedInformations\CentralizedInformations.csproj">
+      <Project>{a22639c1-05e3-41bd-97f9-cd1cd4997a6b}</Project>
+      <Name>CentralizedInformations</Name>
+    </ProjectReference>
     <ProjectReference Include="..\YourApplication\YourApplication.csproj">
       <Project>{8850629B-5FB3-485C-B3BB-7FDF7B344E6A}</Project>
       <Name>YourApplication</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

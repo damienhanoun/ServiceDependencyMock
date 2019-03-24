@@ -1,5 +1,7 @@
 ﻿using Mock.Dependency.With.Proxy.Define.Strategy;
+using System.Configuration;
 using YourApplication;
+using static CentralizedInformations.ExtenalServiceMethodsIds;
 
 namespace ProjectWhichDefineStrategies
 {
@@ -8,14 +10,16 @@ namespace ProjectWhichDefineStrategies
         static void Main(string[] args)
         {
             //Create strategy
-            var mockStrategy = MockStrategyBuilder.ForMethod("")
-                .OnceWithSubstituteBehavior("strategy");
+            var mockStrategy = MockStrategyBuilder.ForMethod(BrokenMethodId)
+                .OnceWithSubstituteBehavior("ServiceGetOne");
 
             //Store strategy
-            var repository = new MockStrategyRepositorySqlServer("");
+            var connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
+            var repository = new MockStrategyRepositorySqlServer(connectionString);
             repository.MockBehavior(mockStrategy);
 
-            //Call your code which will use your defined strategy
+            //Those lines should not be here
+            //Just imagine it is a javascript call to a .NET Core Web site project
             var service = new YourOwnService();
             service.MethodWhichNeedToCallExternalDependency();
         }

@@ -1,59 +1,28 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
     <metadata>
-        <!-- The identifier that must be unique within the hosting gallery -->
         <id>Mock.Dependency.With.Proxy.Apply.Strategy</id>
-
-        <!-- The package version number that is used when resolving dependencies -->
-        <version>1.0.10</version>
-
-        <!-- Authors contain text that appears directly on the gallery -->
+        <version>1.0.12</version>
         <authors>Damien Hanoun</authors>
-
-        <!-- 
-            Owners are typically nuget.org identities that allow gallery
-            users to easily find other packages by the same owners.  
-        -->
         <owners>Damien Hanoun</owners>
-        
-         <!-- Project URL provides a link for the gallery -->
         <projectUrl>https://github.com/Diviniter/ServiceDependencyMock</projectUrl>
-
-         <!-- License information is displayed on the gallery -->
         <license type="expression">MIT</license>
-        
-
-        <!-- The icon is used in Visual Studio's package manager UI -->
         <iconUrl>http://github.com/contoso/UsefulStuff/nuget_icon.png</iconUrl>
-
-        <!-- 
-            If true, this value prompts the user to accept the license when
-            installing the package. 
-        -->
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-
-        <!-- Any details about this particular release -->
         <releaseNotes></releaseNotes>
-
-        <!-- 
-            The description can be used in package manager UI. Note that the
-            nuget.org gallery uses information you add in the portal. 
-        -->
         <description>Allow the proxy to mock the way it is define with Mock.Dependency.With.Proxy.Define.Strategy package</description>
-
-        <!-- Copyright information -->
         <copyright></copyright>
-
-        <!-- Tags appear in the gallery and can be used for tag searches -->
         <tags></tags>
-
-        <!-- Dependencies are automatically installed when the package is installed -->
         <dependencies>
-          <dependency id="Mock.Dependency.With.Proxy.Data.Transfer.Objects" version="1.0.10" />
+          <dependency id="Mock.Dependency.With.Proxy.Data.Transfer.Objects" version="1.0.12" />
           <dependency id="StructureMap" version="4.7.0" />
-        </dependencies>
+        </dependencies>      
+        <contentFiles>
+          <files include="ProxyGenerator.tt" buildAction="None"/>
+        </contentFiles>
     </metadata>
     <files>
-      <file src="ProxyGenerator.tt" target="" />
+        <file src="*.tt" target="content" />
+        <file src="*.tt" target="contentFiles" />
     </files>
 </package>

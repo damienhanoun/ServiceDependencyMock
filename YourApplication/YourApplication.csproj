@@ -5,13 +5,38 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Mock.Dependency.With.Proxy.Apply.Strategy" Version="1.0.9" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0" />
+    <PackageReference Include="Mock.Dependency.With.Proxy.Apply.Strategy" Version="1.0.12" />
     <PackageReference Include="Optional" Version="4.0.0" />
     <PackageReference Include="Unity" Version="5.9.5" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CentralizedInformations\CentralizedInformations.csproj" />
     <ProjectReference Include="..\ExternalDependency\ExternalDependency.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="MockStrategies\ExternalDependencyAssembly\ExternalDependencyProxiesGenerator.cs">
+      <DependentUpon>ExternalDependencyProxiesGenerator.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appSettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="MockStrategies\ExternalDependencyAssembly\ExternalDependencyProxiesGenerator.tt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <LastGenOutput>ExternalDependencyProxiesGenerator.cs</LastGenOutput>
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
   </ItemGroup>
 
 </Project>

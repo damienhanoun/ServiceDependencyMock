@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace YourApplication.ServiceMethodsStrategies.Get
+namespace YourApplication.Contexts.ExternalService
 {
     [Serializable]
     public class GetMockContext

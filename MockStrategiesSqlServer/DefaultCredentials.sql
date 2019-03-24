@@ -1,8 +1,9 @@
-﻿CREATE LOGIN MockStrategyUser WITH PASSWORD = 'd}~G6<?^+s!f$6~';
+﻿-- Those right doesn't seems to be enough to work :/
+CREATE LOGIN MockStrategyUser WITH PASSWORD = 'yourPassword';
 GO
 
 CREATE USER MockStrategyUser FOR LOGIN MockStrategyUser;
 GO
 
-GRANT SELECT, DELETE TO MockStrategyUser
+GRANT SELECT, DELETE ON MockStrategy TO MockStrategyUser 
 GO

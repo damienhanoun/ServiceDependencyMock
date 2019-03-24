@@ -1,4 +1,4 @@
-﻿using ExternalDependency;
+﻿using ExternalDependencyForIntegrationTests;
 using Integration.Tests.Helpers;
 using Integration.Tests.ProjectWithProxy;
 using Integration.Tests.ProjectWithProxy.ServiceMethodsStrategies.Get;
