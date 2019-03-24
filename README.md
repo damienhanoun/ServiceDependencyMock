@@ -117,7 +117,7 @@ public partial class ExternalServiceProxy
 ### Create special behavior for a method
 Just create a class which extend his correspond template :
 ```csharp
-public class ExternalServiceGetOne : ExternalClassNameMehtodTemplate
+public class BehaviorName : ExternalClassNameMehtodNameTemplate
 {
     public int Mehtod() { return 1; }
 }
