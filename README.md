@@ -88,10 +88,10 @@ repository.MockMethod(mockMethodStrategy);
 ```csharp
 public partial class ExternalServiceProxy
 {
-    private YourContextGetter yourContextGetter;
+    private readonly YourContextGetter yourContextGetter;
 
     public ExternalServiceProxy(MockStrategyRepository mockStrategyQuery, ExternalService service,
-        YourContextGetter yourContextGetter) : base(mockStrategyQuery, service)
+        YourContextGetter yourContextGetter) : this(mockStrategyQuery, service)
     {
         this.yourContextGetter = yourContextGetter;
     }
