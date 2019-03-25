@@ -75,11 +75,11 @@ var mockStrategy = MockStrategyBuilder.ForMethod("method id")
 
 //Eventually with a context to apply only when needed or specify data to help to generate return value for substitute behavior
 var mockStrategy = MockStrategyBuilder.ForMethod("method id").OnceWithoutMock();
-	.WithContext(new Context(){ ... })
+	.WithContext(new Context(){ ... }) // Context have to be Serializable
 
 //Store it in a database
 var repository = new MockStrategyRepositorySqlServer(connectionString);
-repository.MockMethod(mockMethodStrategy);
+repository.MockBehavior(mockMethodStrategy);
 ```
 
 ## Apply the mock strategy through a proxy
